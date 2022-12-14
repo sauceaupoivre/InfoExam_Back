@@ -1,31 +1,43 @@
-<html>
+<html lang="fr">
     <head>
         <title>
             @yield('title')
         </title>
+
+        <link rel="icon" type="image/x-icon" href="favicon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
         <link rel="stylesheet" href="{{asset("assets/css/bootstrap.min.css")}}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
     </head>
     <body>
 
         @section('header')
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="header navbar navbar-expand-lg navbar-dark">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
-
+                <img class="ms-4" src="{{asset("assets/logo/PMRoland.svg")}}">
                 <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="{{ request()->routeIs('formations.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('formations.index')}}">Formations<span class="sr-only"></span></a>
+                            <a class="nav-link" href=""><button type="button" class="btn btn-light">ÉPREUVES</button><span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="{{ request()->routeIs('formations.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('formations.index')}}"><button type="button" class="btn btn-light">FORMATIONS</button><span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=""><button type="button" class="btn btn-light">ALERTES</button><span class="sr-only"></span></a>
                         </li>
                     </ul>
                 </div>
-                    <a href="{{ route('login')}}"><button class="btn btn-info">Connexion</button></a>
-
+                <form class="m-0 p-0" action="{{ route('logout')}}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-primary me-4">DÉCONNEXION <i class="bi bi-box-arrow-right"></i></button>
+                </form>
             </nav>
         @show
 
@@ -46,6 +58,13 @@
         <div class="container">
             @yield('content')
         </div>
+
+        @section('footer')
+            <div class="footer">
+                <p class="text-muted m-1">Créée par</p>
+                <img src="{{asset("assets/logo/Qlopex.png")}}">
+            </div>
+        @show
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="{{asset("assets/js/bootstrap.bundle.min.js")}}"></script>

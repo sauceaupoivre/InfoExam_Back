@@ -18,9 +18,7 @@ use App\Http\Controllers\FormationController;
 Route::get('/', function () {
     return view('auth/login');
 });
-Route::get('/home', function () { //REDIRECT SUR HOME APRES LOGIN
-    return view('home');
-})->name('home');
+Route::get('/home',['middleware' => 'auth', function () {return view('home');}])->name('home');
 
 Route::resource('formations', FormationController::class);
 

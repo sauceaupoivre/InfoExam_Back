@@ -7,7 +7,11 @@ use App\Models\Formation;
 
 class FormationController extends Controller
 {
-
+    public function __construct()
+    {
+    $this->middleware('isAdmin');
+    $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

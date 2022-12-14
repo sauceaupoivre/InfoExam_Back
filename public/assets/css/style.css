@@ -1,0 +1,33 @@
+/* HEADER */
+.header
+{
+    background: rgb(27,89,145);
+    background: linear-gradient(90deg, rgba(27,89,145,1) 0%, rgba(9,161,219,1) 50%, rgba(27,89,145,1) 100%);
+}
+.header img
+{
+    height: 75px;
+}
+
+/* FOOTER */
+.footer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.225);
+}
+.footer img
+{
+    height:100px;
+}
+
+/* BOOTSTRAP OVERRIDE */
+.btn-light
+{
+    --bs-btn-bg:#ececec !important;
+}
