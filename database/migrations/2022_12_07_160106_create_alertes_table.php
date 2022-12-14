@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('modifs', function (Blueprint $table) {
+        Schema::create('alertes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('titre');
