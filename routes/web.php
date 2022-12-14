@@ -21,6 +21,7 @@ use App\Http\Controllers\API\ApiController;
 Route::get('/', function () {
     return view('auth/login');
 });
+
 Route::get('/home', function () {return view('home');})->middleware(['auth', 'isadmin'])->name('home');
 
 Route::resource('epreuves', EpreuveController::class);

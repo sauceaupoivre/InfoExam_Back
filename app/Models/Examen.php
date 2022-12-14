@@ -13,9 +13,9 @@ class Examen extends Model
     {
         return $this->belongsTo(Salle::class);
     }
-    public function alerte()
+    public function alertes()
     {
-        return $this->belongsTo(Alerte::class);
+        return $this->hasMany(Alerte::class);
     }
     public function formation()
     {

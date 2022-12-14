@@ -15,7 +15,7 @@ class ApiController extends Controller
      */
     public function index()
     {
-        $cartouches = Examen::with('salle','alerte','formation','epreuve')->get();
+        $cartouches = Examen::with('salle','alertes','formation','epreuve')->get();
         return response()->json($cartouches);
     }
 

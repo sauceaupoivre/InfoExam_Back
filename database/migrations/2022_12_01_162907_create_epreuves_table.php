@@ -16,13 +16,16 @@ return new class extends Migration
         Schema::create('epreuves', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('matiere');
+
+            $table->string('examen-concours');
+            $table->string('epreuve');
+            $table->string('matiere')->nullable();
 
             $table->text('description')->nullable();
 
-            $table->dateTime('debutepreuve');
-            $table->dateTime('finepreuve');
-            $table->dateTime('miseenloge');
+            $table->dateTime('debut');
+            $table->dateTime('fin');
+            $table->dateTime('loge');
 
 
 
