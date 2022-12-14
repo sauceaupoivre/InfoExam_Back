@@ -8,6 +8,10 @@
 {
     height: 75px;
 }
+nav form button
+{
+    margin-right: 1.5rem;
+}
 
 /* FOOTER */
 .footer
@@ -26,8 +30,27 @@
     height:100px;
 }
 
+/* GENERAL */
+form
+{
+    margin: 0;
+    padding: 0;
+}
+
 /* BOOTSTRAP OVERRIDE */
 .btn-light
 {
     --bs-btn-bg:#ececec !important;
+}
+
+@media only screen and (max-width: 992px)
+{
+    nav form
+    {
+        margin: auto !important;
+    }
+    nav form button
+    {
+        margin: 0 !important;
+    }
 }

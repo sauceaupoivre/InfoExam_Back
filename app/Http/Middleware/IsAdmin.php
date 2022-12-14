@@ -21,14 +21,11 @@ class IsAdmin
                 return $next($request);
             }
             else {
-                session()->flash('error', 'Il faut être admin');
-
-                return redirect()->route('login');
+                return abort(403,'Action non autorisée');
             }
         }
         else {
-            session()->flash('error', 'Il faut être admin');
-            return redirect()->route('login');
+            return abort(403,'Action non autorisée');
         }
     }
 }

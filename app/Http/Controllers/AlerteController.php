@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Epreuve;
 use Illuminate\Http\Request;
+use App\Models\Alerte;
 
-class EpreuveController extends Controller
+
+class AlerteController extends Controller
 {
     public function __construct()
     {
@@ -19,8 +20,8 @@ class EpreuveController extends Controller
      */
     public function index()
     {
-        $epreuves = Epreuve::all();
-        return view('epreuves',compact('epreuves'));
+        $alertes = Alerte::all();
+        return view('alertes', compact('alertes'));
     }
 
     /**

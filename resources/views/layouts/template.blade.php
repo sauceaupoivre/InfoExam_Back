@@ -17,26 +17,29 @@
 
         @section('header')
             <nav class="header navbar navbar-expand-lg navbar-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <img class="ms-4" src="{{asset("assets/logo/PMRoland.svg")}}">
-                <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href=""><button type="button" class="btn btn-light">ÉPREUVES</button><span class="sr-only"></span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="{{ request()->routeIs('formations.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('formations.index')}}"><button type="button" class="btn btn-light">FORMATIONS</button><span class="sr-only"></span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href=""><button type="button" class="btn btn-light">ALERTES</button><span class="sr-only"></span></a>
-                        </li>
-                    </ul>
-                </div>
-                <form class="m-0 p-0" action="{{ route('logout')}}" method="POST">
+                    <button class="navbar-toggler ms-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <img class="ms-4 me-4" src="{{asset("assets/logo/PMRoland.svg")}}">
+
+                    <div class="collapse navbar-collapse justify-content-md-center text-center" id="navbar">
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="{{ request()->routeIs('epreuves.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('epreuves.index')}}"><button type="button" class="btn btn-light">ÉPREUVES</button><span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="{{ request()->routeIs('formations.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('formations.index')}}"><button type="button" class="btn btn-light">FORMATIONS</button><span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="{{ request()->routeIs('alertes.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('alertes.index')}}"><button type="button" class="btn btn-light">ALERTES</button><span class="sr-only"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                <form action="{{ route('logout')}}" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-primary me-4">DÉCONNEXION <i class="bi bi-box-arrow-right"></i></button>
+                    <button type="submit" class="btn btn-primary">DÉCONNEXION <i class="bi bi-box-arrow-right"></i></button>
                 </form>
             </nav>
         @show

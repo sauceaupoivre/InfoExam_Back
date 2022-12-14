@@ -1,8 +1,8 @@
 @extends('../layouts/template')
-@section('title', 'Gestion des promotions')
+@section('title', 'Gestion | Formations')
 
 @section('content')
-    <p>Ici les promotions</p>
+    <p>Ici les formations</p>
 
 
 

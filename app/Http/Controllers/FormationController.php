@@ -9,7 +9,7 @@ class FormationController extends Controller
 {
     public function __construct()
     {
-    $this->middleware('isAdmin');
+    $this->middleware('isadmin');
     $this->middleware('auth');
     }
     /**
