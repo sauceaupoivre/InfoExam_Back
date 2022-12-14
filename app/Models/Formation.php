@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Formation extends Model
 {
     use HasFactory;
+
+    public function epreuves()
+    {
+        return $this->belongsToMany(Epreuve::class);
+    }
+    public function examens()
+    {
+        return $this->belongsTo(Examen::class);
+    }
 }

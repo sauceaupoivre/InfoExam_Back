@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Modif extends Model
 {
     use HasFactory;
+
+    public function examen()
+    {
+        return $this->belongsTo(Examen::class);
+    }
 }
