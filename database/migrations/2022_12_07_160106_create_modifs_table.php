@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('modifs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('titre');
+            $table->string('description');
 
             $table->unsignedBigInteger('examen_id');
             $table->foreign('examen_id')->references('id')->on('examens');

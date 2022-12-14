@@ -19,16 +19,14 @@ return new class extends Migration
 
             $table->string('repere')->nullable();
 
-            $table->text('description')->nullable();
             $table->boolean('dictionnaire');
             $table->boolean('calculatrice');
+            $table->boolean('estdematerialise');
+
             $table->text('commentaire')->nullable();
+            $table->text('regle')->nullable();
 
             $table->dateTime('date');
-            $table->dateTime('debutepreuve');
-            $table->dateTime('finepreuve');
-            $table->dateTime('tierstemps');
-            $table->dateTime('sortie');
 
             $table->unsignedBigInteger('formation_id');
             $table->foreign('formation_id')->references('id')->on('formations');
@@ -39,8 +37,7 @@ return new class extends Migration
             $table->unsignedBigInteger('salle_id');
             $table->foreign('salle_id')->references('id')->on('salles');
 
-            $table->unsignedBigInteger('cartouche_id');
-            $table->foreign('cartouche_id')->references('id')->on('cartouches');
+
         });
     }
 

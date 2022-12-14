@@ -17,6 +17,15 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('matiere');
+
+            $table->text('description')->nullable();
+
+            $table->dateTime('debutepreuve');
+            $table->dateTime('finepreuve');
+            $table->dateTime('miseenloge');
+
+
+
         });
     }
 
