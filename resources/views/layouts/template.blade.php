@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>
             @yield('title')
         </title>
@@ -30,17 +35,17 @@
                                 <a class="{{ request()->routeIs('epreuves.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('epreuves.index')}}"><button type="button" class="btn btn-light">ÉPREUVES</button><span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="{{ request()->routeIs('formations.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('formations.index')}}"><button type="button" class="btn btn-light">FORMATIONS</button><span class="sr-only"></span></a>
+                                <a class="{{ request()->routeIs('formations.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('formations.index')}}"><button type="button" class="btn btn-info">FORMATIONS</button><span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="{{ request()->routeIs('alertes.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('alertes.index')}}"><button type="button" class="btn btn-light">ALERTES</button><span class="sr-only"></span></a>
+                                <a class="{{ request()->routeIs('alertes.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('alertes.index')}}"><button type="button" class="btn btn-warning">ALERTES</button><span class="sr-only"></span></a>
                             </li>
                         </ul>
                     </div>
 
                 <form action="{{ route('logout')}}" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-primary">DÉCONNEXION <i class="bi bi-box-arrow-right"></i></button>
+                    <button type="submit" class="btn btn-secondary">DÉCONNEXION <i class="bi bi-box-arrow-right"></i></button>
                 </form>
             </nav>
         @show

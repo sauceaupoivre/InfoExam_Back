@@ -124,11 +124,11 @@
     </div>
 
     <!-- Table liste épreuves-->
-    <div class="mt-4">
+    <div class="pt-4 pb-4">
 
         <!-- Trigger AddModal -->
         <button type="button" class="btn btn-primary ms-4 mb-2" data-bs-toggle="modal" data-bs-target="#addepreuve">
-            Ajouter une épreuve
+            Ajouter une épreuve <i class="bi bi-plus-square"></i>
         </button>
 
         <div class="card ">
@@ -176,6 +176,8 @@
                     </tbody>
                 </table>
                 <!-- Fin Table -->
+            </div>
+            <div class="card-footer">
                 <nav class="pagination justify-content-end">
                     <ul class="pagination pagination-sm mb-0">
                     <li class="page-item active" aria-current="page">
