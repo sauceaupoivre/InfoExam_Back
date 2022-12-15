@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="fr">
     <head>
         <title>
@@ -74,3 +75,4 @@
         <script src="{{asset("assets/js/script.js")}}"></script>
     </body>
 </html>
+

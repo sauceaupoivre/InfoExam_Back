@@ -36,11 +36,22 @@ form
     margin: 0;
     padding: 0;
 }
-
+td
+{
+    vertical-align: middle;
+}
+.input-date
+{
+    border: 1px solid rgba(0,0,0,.225);
+}
 /* BOOTSTRAP OVERRIDE */
 .btn-light
 {
     --bs-btn-bg:#ececec !important;
+}
+.card-header
+{
+    background-color: rgb(9,161,219) !important;
 }
 
 @media only screen and (max-width: 992px)

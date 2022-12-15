@@ -19,8 +19,8 @@ return new class extends Migration
 
             $table->string('repere')->nullable();
 
-            $table->boolean('dictionnaire');
-            $table->boolean('calculatrice');
+            $table->boolean('dictionnaire')->default(0);
+            $table->boolean('calculatrice')->default(0);
             $table->boolean('estdematerialise');
 
             $table->text('commentaire')->nullable();

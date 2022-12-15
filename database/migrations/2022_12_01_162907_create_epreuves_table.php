@@ -19,6 +19,8 @@ return new class extends Migration
 
             $table->string('examen-concours');
             $table->string('epreuve');
+            $table->string('session');
+
             $table->string('matiere')->nullable();
 
             $table->text('description')->nullable();

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Epreuve;
+use App\Models\Examen;
+use App\Models\Formation;
+use App\Models\Salle;
 use Illuminate\Http\Request;
 
 class EpreuveController extends Controller
@@ -19,8 +22,10 @@ class EpreuveController extends Controller
      */
     public function index()
     {
-        $epreuves = Epreuve::all();
-        return view('epreuves',compact('epreuves'));
+        $examens = Examen::all();
+        $salles = Salle::all();
+        $formations = Formation::all();
+        return view('epreuves',compact('examens','salles','formations'));
     }
 
     /**
