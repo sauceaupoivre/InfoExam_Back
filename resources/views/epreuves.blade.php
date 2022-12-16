@@ -43,13 +43,13 @@
                         </div>
 
                         <!-- UNIQUES DEMATERIALISE -->
-                        <div id="input-dematerialise" class="input-group mb-2" style="display: none">
+                        <div id="input-dematerialise" class="input-dematerialise input-group mb-2" style="display: none">
                             <span class="input-group-text">Matière : </span>
                             <input id="matiere" type="text" name="matiere" class="form-control">
                         </div>
 
                         <!-- UNIQUES MANUSCRITE -->
-                        <div id="input-manuscrite" class="input-group mb-2" style="display: none">
+                        <div id="input-manuscrit" class="input-manuscrit input-group mb-2" style="display: none">
                             <span class="input-group-text">Académie : </span>
                             <input id="academie" type="text" name="academie" class="form-control">
                         </div>
@@ -144,13 +144,36 @@
                         <th scope="col">Salle</th>
                         <th scope="col">Formation</th>
                         <th scope="col">Épreuve</th>
-                        <th scope="col">Format</th>
+                        <th scope="col">Cartouche</th>
                         <th scope="col">Modifier/Supprimer</th>
                     </th>
                     </tr>
                     </thead>
                     <tbody>
                         @forelse ($examens as $e)
+                        <!-- Delete Modal -->
+                        <div class="modal fade" id="deleteModal-{{$e->id}}" tabindex="-1" >
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{$e->epreuve->epreuve}} {{$e->formation->nom}}</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Êtes-vous sûrs de vouloir supprimer cette épreuve ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                    <form action="{{ route('epreuves.destroy',$e->id)}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                         <tr>
                             <td>{{date("d-m-Y",strtotime($e->date))}}</td>
                             <td>{{$e->salle->nom}}</td>
@@ -166,8 +189,10 @@
                                 @endif
                             </td>
                             <td>
-                                <button class="btn btn-primary btn-small"><i class="bi bi-pencil-square"></i></button>
-                                <button class="btn btn-danger btn-small"><i class="bi bi-x-square"></i></button>
+                                <a href="{{route('epreuves.show',$e->id)}}"><button class="btn btn-primary btn-small"><i class="bi bi-pencil-square"></i></button></a>
+                                <button class="btn btn-danger btn-small" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$e->id}}">
+                                    <i class="bi bi-x-square"></i>
+                                </button>
                             </td>
                         </tr>
                         @empty

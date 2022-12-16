@@ -57,7 +57,10 @@ class EpreuveController extends Controller
      */
     public function show($id)
     {
-        //
+        $examen = Examen::find($id);
+        $salles = Salle::all();
+        $formations = Formation::all();
+        return view('epreuve-show',compact('examen','salles','formations'));
     }
 
     /**

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Examen;
 use Illuminate\Http\Request;
+use App\Models\Examen;
+use App\Models\Salle;
 
 class ApiController extends Controller
 {
@@ -33,22 +34,27 @@ class ApiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Examen  $examen
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Examen $examen)
+    public function show($id)
     {
-        //
+        try {
+            $examen = Examen::find($id);
+            return response()->json($examen->load('salle','alertes','formation','epreuve'));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Examen  $examen
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Examen $examen)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -56,10 +62,10 @@ class ApiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Examen  $examen
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Examen $examen)
+    public function destroy($id)
     {
         //
     }

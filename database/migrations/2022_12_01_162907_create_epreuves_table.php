@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('examen-concours');
+            $table->string('examen_concours');
             $table->string('epreuve');
             $table->string('session');
 
