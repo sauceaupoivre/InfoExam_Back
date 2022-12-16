@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Examen;
 use App\Models\Salle;
+use DateTime;
 
 class ApiController extends Controller
 {
@@ -16,8 +17,12 @@ class ApiController extends Controller
      */
     public function index()
     {
-        $cartouches = Examen::with('salle','alertes','formation','epreuve')->get();
-        return response()->json($cartouches);
+        try {
+            $cartouches = Examen::with('salle','alertes','formation','epreuve')->get();
+            return response()->json($cartouches);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**
@@ -45,6 +50,16 @@ class ApiController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+    public function showByDate($date)
+    {
+        try {
+            $examens = Examen::where('date','LIKE','%'.$date.'%')->get();
+            return response()->json($examens->load('salle','alertes','formation','epreuve'));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
     }
 
     /**

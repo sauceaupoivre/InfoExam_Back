@@ -16,4 +16,32 @@ $(document).ready(function(){
             $(".input-manuscrit").hide();
         }
     });
+
+    $("#date-alerte").on('input', function(event){
+        event.preventDefault();
+        var url = "http://localhost/InfoExam_Back/public/api/date/"+$("#date-alerte").val();
+        $.ajax({
+            url: url,
+            method: 'GET',
+            dataType: 'JSON',
+            contentType: false,
+            cache: false,
+            processData: false,
+            success:function(response)
+            {
+                if(response == null)
+                {
+
+                }
+                else{
+                    response.forEach((item, index) => {
+                        $("#epreuves").append('<option value="'+item.id+'">'+"Salle : "+ item.salle["nom"] +" | Formation : "+ item.formation["nom"] +" | Concours : "+ item.epreuve["examen_concours"] +" | Epreuve : "+ item.epreuve["epreuve"] +              '</option>');
+                        $("#div-epreuves").show();
+                    })
+                }
+            },
+            error: function(response) {
+            }
+        });
+    });
 });

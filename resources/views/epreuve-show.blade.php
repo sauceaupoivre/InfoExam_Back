@@ -9,8 +9,8 @@
     @method('PUT')
     <div class="card mt-4">
         <!-- CHOIX FORMAT -->
-        <div class="card-header">
-            <h3 class="text-center text-light">Modifier une épreuve</h3>
+        <div class="card-header card-header-blue">
+            <h3 class="text-center text-light m-0">Modifier une épreuve</h3>
         </div>
 
         <div class="card-body">

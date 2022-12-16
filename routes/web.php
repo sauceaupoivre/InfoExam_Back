@@ -32,6 +32,7 @@ Route::resource('alertes', AlerteController::class);
 
 // Route API
 Route::apiResource("api", ApiController::class);
+Route::get('/api/date/{date}', [ApiController::class , 'showByDate'])->name("showByDate");
 
 Route::middleware([
     'auth:sanctum',

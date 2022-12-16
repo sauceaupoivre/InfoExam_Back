@@ -132,7 +132,7 @@
         </button>
 
         <div class="card ">
-            <div class="card-header">
+            <div class="card-header card-header-blue">
                 <h4 class="text-center mb-0 text-white">LISTE DES ÉPREUVES</h4>
             </div>
             <div class="card-body">
@@ -141,6 +141,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Date</th>
+                        <th scope="col">Début</th>
                         <th scope="col">Salle</th>
                         <th scope="col">Formation</th>
                         <th scope="col">Épreuve</th>
@@ -176,6 +177,7 @@
 
                         <tr>
                             <td>{{date("d-m-Y",strtotime($e->date))}}</td>
+                            <td>{{date("H",strtotime($e->epreuve->debut))."h".date("i",strtotime($e->epreuve->debut))}}</td>
                             <td>{{$e->salle->nom}}</td>
                             <td>
                                 {{$e->formation->nom}}
