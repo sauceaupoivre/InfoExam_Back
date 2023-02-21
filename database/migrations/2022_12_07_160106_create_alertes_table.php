@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cartouches', function (Blueprint $table) {
+        Schema::create('alertes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('titre');
+            $table->string('description');
+
+            $table->unsignedBigInteger('examen_id');
+            $table->foreign('examen_id')->references('id')->on('examens');
         });
     }
 
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cartouches');
+        Schema::dropIfExists('alertes');
     }
 };

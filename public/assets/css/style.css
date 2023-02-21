@@ -1,0 +1,125 @@
+/* HEADER */
+.header
+{
+    max-height: 10vh;
+    background: rgb(27,89,145);
+    background: linear-gradient(90deg, rgba(27,89,145,1) 0%, rgba(9,161,219,1) 50%, rgba(27,89,145,1) 100%);
+}
+.header img
+{
+    height: 75px;
+}
+nav form button
+{
+    margin-right: 1.5rem;
+}
+
+/* FOOTER */
+.footer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.225);
+    max-height: 15vh;
+}
+.footer img
+{
+    height:100px;
+}
+
+/* GENERAL */
+body
+{
+    height:100vh;
+    max-height: 100vh;
+}
+.container
+{
+    min-height: 75vh;
+    max-height: 75vh;
+}
+form
+{
+    margin: 0;
+    padding: 0;
+}
+td
+{
+    vertical-align: middle;
+}
+.input-date
+{
+    border: 1px solid rgba(0,0,0,.225);
+}
+/* BOOTSTRAP OVERRIDE */
+.btn-outline-primary
+{
+    --bs-btn-hover-bg:rgb(9, 95, 161) !important;
+    --bs-btn-active-bg:rgb(26,112,178) !important;
+    --bs-btn-border-color:rgb(33, 104, 158) !important;
+    --bs-btn-color:rgb(33, 104, 158) !important;
+}
+.btn-light
+{
+    --bs-btn-bg:rgb(140,198,64) !important;
+    --bs-btn-border-color:rgb(116, 173, 42) !important;
+    --bs-btn-hover-bg:rgb(152, 218, 66) !important;
+    --bs-btn-hover-border-color:rgb(92, 143, 27) !important;
+    --bs-btn-active-bg:rgb(140,198,64) !important;
+    --bs-btn-active-border-color:rgb(116, 173, 42) !important;
+
+}
+.btn-info
+{
+    --bs-btn-bg:rgb(253,186,50) !important;
+    --bs-btn-border-color:rgb(241, 170, 28) !important;
+    --bs-btn-hover-bg:rgb(248, 197, 94) !important;
+    --bs-btn-hover-border-color:rgb(241, 170, 28) !important;
+    --bs-btn-active-bg:rgb(253,186,50) !important;
+    --bs-btn-active-border-color:rgb(241, 170, 28) !important;
+}
+.btn-warning
+{
+    --bs-btn-bg:rgb(234,36,135) !important;
+    --bs-btn-border-color:rgb(201, 43, 122) !important;
+    --bs-btn-hover-bg:rgb(240, 60, 150) !important;
+    --bs-btn-hover-border-color:rgb(201, 43, 122) !important;
+    --bs-btn-active-bg:rgb(234,36,135) !important;
+    --bs-btn-active-border-color:rgb(201, 43, 122) !important;
+
+}
+.btn-primary
+{
+    --bs-btn-bg:rgb(26,112,178) !important;
+    --bs-btn-border-color:rgb(33, 104, 158) !important;
+    --bs-btn-hover-bg:rgb(9, 95, 161) !important;
+    --bs-btn-hover-border-color:rgb(33, 104, 158) !important;
+    --bs-btn-active-bg:rgb(26,112,178) !important;
+    --bs-btn-active-border-color:rgb(33, 104, 158) !important;
+
+}
+.card-header-blue
+{
+    background-color: rgb(9,161,219) !important;
+}
+
+@media only screen and (max-width: 992px)
+{
+    nav form
+    {
+        margin: auto !important;
+    }
+    nav form button
+    {
+        margin: 0 !important;
+    }
+    .header
+    {
+        height: auto;
+    }
+}

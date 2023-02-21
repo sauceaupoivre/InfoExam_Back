@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\AlerteController;
+use App\Http\Controllers\EpreuveController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormationController;
+use App\Http\Controllers\API\ApiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +19,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth/login');
-});
-Route::get('/home', function () { //REDIRECT SUR HOME APRES LOGIN
-    return view('home');
-})->name('home');
+    return view('formations');
+})->middleware(['auth', 'isadmin']);
+
+Route::get('/home', function () {return view('formations');})->middleware(['auth', 'isadmin'])->name('home');
+
+Route::resource('epreuves', EpreuveController::class);
+
+Route::resource('formations', FormationController::class);
+
+Route::resource('alertes', AlerteController::class);
+
+// Route API
+Route::apiResource("api", ApiController::class);
+Route::get('/api/date/{date}', [ApiController::class , 'showByDate'])->name("showByDate");
 
 Route::middleware([
     'auth:sanctum',
