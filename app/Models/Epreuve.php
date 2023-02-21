@@ -10,10 +10,10 @@ class Epreuve extends Model
     use HasFactory;
     public function formations()
     {
-        return $this->belongsToMany(formations::class);
+        return $this->belongsToMany(Formation::class);
     }
     public function examens()
     {
-        return $this->belongsToMany(Eamen::class);
+        return $this->belongsToMany(Examen::class);
     }
 }

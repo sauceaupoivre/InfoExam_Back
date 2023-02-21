@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Alerte;
 use App\Models\Salle;
+use Illuminate\Console\View\Components\Alert;
 
 class AlerteController extends Controller
 {
@@ -20,9 +21,8 @@ class AlerteController extends Controller
      */
     public function index()
     {
-        $salles = Salle::all();
         $alertes = Alerte::all();
-        return view('alertes', compact('alertes','salles'));
+        return view('alertes', compact('alertes'));
     }
 
     /**
@@ -43,7 +43,21 @@ class AlerteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        try {
+            $a = new Alerte;
+            $a->titre = $request->titre;
+            $a->description = $request->description;
+            $a->examen_id = $request->epreuves;
+
+            $a->save();
+
+            session()->flash('success', 'Alerte envoyée');
+        } catch (\Throwable $th) {
+            session()->flash('error', "Erreur lors de l'envoi de l'alerte");
+            //throw $th;
+        }
+        return redirect()->route('alertes.index');
     }
 
     /**

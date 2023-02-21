@@ -57,6 +57,13 @@ td
     border: 1px solid rgba(0,0,0,.225);
 }
 /* BOOTSTRAP OVERRIDE */
+.btn-outline-primary
+{
+    --bs-btn-hover-bg:rgb(9, 95, 161) !important;
+    --bs-btn-active-bg:rgb(26,112,178) !important;
+    --bs-btn-border-color:rgb(33, 104, 158) !important;
+    --bs-btn-color:rgb(33, 104, 158) !important;
+}
 .btn-light
 {
     --bs-btn-bg:rgb(140,198,64) !important;

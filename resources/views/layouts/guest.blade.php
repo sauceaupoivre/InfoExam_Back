@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/js/app.js'])
     </head>
     <body>
         @section('header')
@@ -29,9 +29,9 @@
                     </button>
                     <img class="ms-4 me-4" src="{{asset("assets/logo/PMRoland.svg")}}">
                     <div class="position-absolute w-100">
-                        <h1 style="text-align:center;" class="text-light m-auto">
-                            <b>Bienvenue sur le centre de gestion des épreuves d'examen</b>
-                        </h1>
+                        <h4 style="text-align:center;" class="text-light m-auto">
+                            <b>Bienvenue sur le centre de gestion d'InfoExam</b>
+                        </h4>
                     </div>
                     @auth
                         <div class="collapse navbar-collapse justify-content-md-center text-center" id="navbar">

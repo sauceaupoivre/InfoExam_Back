@@ -20,6 +20,7 @@ $(document).ready(function(){
     $("#date-alerte").on('input', function(event){
         event.preventDefault();
         var url = "http://localhost/InfoExam_Back/public/api/date/"+$("#date-alerte").val();
+        $("#epreuves option").remove();
         $.ajax({
             url: url,
             method: 'GET',
@@ -35,7 +36,7 @@ $(document).ready(function(){
                 }
                 else{
                     response.forEach((item, index) => {
-                        $("#epreuves").append('<option value="'+item.id+'">'+"Salle : "+ item.salle["nom"] +" | Formation : "+ item.formation["nom"] +" | Concours : "+ item.epreuve["examen_concours"] +" | Epreuve : "+ item.epreuve["epreuve"] +              '</option>');
+                        $("#epreuves").append('<option class="epreuves-option" value="'+item.id+'">'+"Salle : "+ item.salle["nom"] +" | Formation : "+ item.formation["nom"] +" | Concours : "+ item.epreuve["examen_concours"] +" | Epreuve : "+ item.epreuve["epreuve"] +              '</option>');
                         $("#div-epreuves").show();
                     })
                 }
