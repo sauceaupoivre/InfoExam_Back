@@ -28,8 +28,7 @@
                     </button>
                     <img class="ms-4 me-4" src="{{asset("assets/logo/PMRoland.svg")}}">
 
-                    <div class="collapse navbar-collapse justify-content-md-center text-center" id="navbar">
-
+                    <div class="collapse navbar-collapse justify-content-md-center text-center p-3" id="navbar">
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="{{ request()->routeIs('epreuves.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('epreuves.index')}}"><button type="button" class="btn btn-light">ÉPREUVES</button><span class="sr-only"></span></a>
@@ -40,13 +39,18 @@
                             <li class="nav-item">
                                 <a class="{{ request()->routeIs('alertes.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('alertes.index')}}"><button type="button" class="btn btn-warning">ALERTES</button><span class="sr-only"></span></a>
                             </li>
+                            <li class="nav-item d-flex align-items-center">
+                                <form action="{{ route('logout')}}" method="POST">
+                                    @csrf
+                                    <div>
+                                        <button type="submit" class="btn btn-secondary ms-2 mt-2 me-0">DÉCONNEXION <i class="bi bi-box-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </li>
                         </ul>
                     </div>
 
-                <form action="{{ route('logout')}}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-secondary">DÉCONNEXION <i class="bi bi-box-arrow-right"></i></button>
-                </form>
+
             </nav>
         @show
 
