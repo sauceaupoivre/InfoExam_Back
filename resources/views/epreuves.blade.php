@@ -205,15 +205,7 @@
                 <!-- Fin Table -->
             </div>
             <div class="card-footer">
-                <nav class="pagination justify-content-end">
-                    <ul class="pagination pagination-sm mb-0">
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">1</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    </ul>
-                </nav>
+                {{ $examens->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

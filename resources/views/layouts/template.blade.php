@@ -43,7 +43,7 @@
                                 <form action="{{ route('logout')}}" method="POST">
                                     @csrf
                                     <div>
-                                        <button type="submit" class="btn btn-secondary ms-2 mt-2 me-0">DÉCONNEXION <i class="bi bi-box-arrow-right"></i></button>
+                                        <button type="submit" class="btn btn-secondary ms-2 me-0" id="btn-logout">DÉCONNEXION <i class="bi bi-box-arrow-right"></i></button>
                                     </div>
                                 </form>
                             </li>
