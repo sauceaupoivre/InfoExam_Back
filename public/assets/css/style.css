@@ -29,15 +29,10 @@ nav form button
 }
 .footer img
 {
-    height:100px;
+    max-height: 13vh;
 }
 
 /* GENERAL */
-body
-{
-    height:100vh;
-    max-height: 100vh;
-}
 .container
 {
     min-height: 75vh;

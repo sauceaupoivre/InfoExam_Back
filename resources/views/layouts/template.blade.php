@@ -22,7 +22,7 @@
     <body>
 
         @section('header')
-            <nav class="header navbar navbar-expand-lg navbar-dark">
+            <nav class="header navbar navbar-expand-lg navbar-dark sticky-top">
                     <button class="navbar-toggler ms-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -74,8 +74,10 @@
 
         @section('footer')
             <div class="footer">
-                <p class="text-muted m-1">Créée par</p>
-                <img src="{{asset("assets/logo/Qlopex.png")}}">
+                <div class="d-flex align-items-center">
+                    <p class="text-muted m-1">Créée par</p>
+                    <img src="{{asset("assets/logo/Qlopex.png")}}">
+                </div>
             </div>
         @show
 
