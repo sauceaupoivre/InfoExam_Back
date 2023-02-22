@@ -7,7 +7,7 @@
 }
 .header img
 {
-    height: 75px;
+    height: 65px;
 }
 nav form button
 {
@@ -121,5 +121,15 @@ td
     .header
     {
         height: auto;
+    }
+    #navbar
+    {
+        z-index: 99;
+        background: rgb(27,89,145);
+        background: linear-gradient(90deg, rgba(27,89,145,1) 0%, rgba(9,161,219,1) 50%, rgba(27,89,145,1) 100%);
+
+    }
+    #btn-logout{
+        margin-top: 0.5rem !important;
     }
 }

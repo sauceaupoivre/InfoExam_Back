@@ -22,7 +22,7 @@ class EpreuveController extends Controller
      */
     public function index()
     {
-        $examens = Examen::all();
+        $examens = Examen::paginate(5);
         $salles = Salle::all();
         $formations = Formation::all();
         return view('epreuves',compact('examens','salles','formations'));

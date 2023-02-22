@@ -6,7 +6,7 @@
     <!-- AddModal -->
     <div class="modal fade" id="addepreuve" tabindex="-1" aria-labelledby="addepreuve" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="" method="POST">
+            <form action="{{route('examens.store')}}" method="POST">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -17,7 +17,7 @@
                         <!-- CHOIX FORMAT -->
                         <div class="d-flex justify-content-center" id="epreuve-format">
                             <input type="radio" class="btn-check" name="estdematerialise" id="option1" value="1" autocomplete="off" required>
-                            <label class="btn btn-outline-primary me-2" for="option1">Dématerialisé</label>
+                            <label class="btn btn-outline-primary me-2" name="" for="option1">Dématerialisé</label>
 
                             <input type="radio" class="btn-check" name="estdematerialise" id="option2" value="0" autocomplete="off">
                             <label class="btn btn-outline-primary" for="option2">Manuscrit</label>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="input-group mb-2">
                             <span class="input-group-text">Concours/Examen : </span>
-                            <input type="text" class="form-control" name="examen-concours" required>
+                            <input type="text" class="form-control" name="examen_concours" value="{{ old('examen_concours') }}" required>
                         </div>
                         <div class="input-group mb-2">
                             <span class="input-group-text">Spécialité/Option/Série/Section : </span>
@@ -205,15 +205,7 @@
                 <!-- Fin Table -->
             </div>
             <div class="card-footer">
-                <nav class="pagination justify-content-end">
-                    <ul class="pagination pagination-sm mb-0">
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">1</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    </ul>
-                </nav>
+                {{ $examens->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>
