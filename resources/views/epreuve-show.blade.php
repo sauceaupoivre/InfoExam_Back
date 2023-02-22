@@ -4,7 +4,7 @@
 @section('content')
 
 
-<form action="{{route('epreuves.update',$examen->id)}}" method="POST">
+<form action="{{route('examens.update',$examen->id)}}" method="POST">
     @csrf
     @method('PUT')
     <div class="card mt-4">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="input-group mb-2">
                     <span class="input-group-text">Concours/Examen : </span>
-                    <input type="text" class="form-control" name="examen-concours" value="{{$examen->epreuve->examen_concours}}" placeholder="{{$examen->epreuve->examen_concours}}" required>
+                    <input type="text" class="form-control" name="examen_concours" value="{{$examen->epreuve->examen_concours}}" placeholder="{{$examen->epreuve->examen_concours}}" required>
                 </div>
                 <div class="input-group mb-2">
                     <span class="input-group-text">Spécialité/Option/Série/Section : </span>

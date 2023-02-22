@@ -104,7 +104,38 @@ class ExamenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $examen = Examen::find($id);
+        $epreuve = Epreuve::find($examen->epreuve->id);
+
+        $epreuve->examen_concours = $request->examen_concours;
+        $epreuve->epreuve = $request->epreuve;
+        $epreuve->session = $request->session;
+        if(isset($request->matiere))
+        {
+            $epreuve->matiere = $request->matiere;
+        }
+        $epreuve->debut = DateTime::createFromFormat("H:i", $request->debut);
+        $epreuve->fin = DateTime::createFromFormat("H:i", $request->fin);
+        $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
+
+        if($epreuve->save()){
+            $examen->estdematerialise = $request->estdematerialise;
+            if(isset($request->calculatrice))
+            {
+                $examen->calculatrice = $request->calculatrice;
+            }
+            if(isset($request->dictionnaire))
+            {
+                $examen->dictionnaire = $request->dictionnaire;
+            }
+            $examen->date = $request->date;
+            $examen->salle_id = $request->salle;
+            $examen->formation_id = $request->formation;
+            if($examen->save()){
+                session()->flash('success', 'Épreuve modifiée');
+                return redirect()->route('epreuves.index');
+            }
+        }
     }
 
     /**

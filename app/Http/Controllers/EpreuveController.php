@@ -83,7 +83,7 @@ class EpreuveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
