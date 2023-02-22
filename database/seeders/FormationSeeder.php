@@ -24,8 +24,10 @@ class FormationSeeder extends Seeder
         for ($i = 0; $i < 5; $i++){
             DB::table('formations')->insert([
                 'nom' => $formations[array_rand($formations,1)],
-                'serie' => Str::random(4),
+                'serie' => strval($faker->year($max = 'now')),
                 'academie' => $faker->city(),
+
+
             ]);
         }
     }
