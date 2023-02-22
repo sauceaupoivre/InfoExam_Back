@@ -1,6 +1,7 @@
 /* HEADER */
 .header
 {
+    min-height: 73px;
     max-height: 10vh;
     background: rgb(27,89,145);
     background: linear-gradient(90deg, rgba(27,89,145,1) 0%, rgba(9,161,219,1) 50%, rgba(27,89,145,1) 100%);
@@ -21,8 +22,7 @@ nav form button
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    position: absolute;
-    bottom: 0;
+
     width: 100%;
     border: 1px solid rgba(0,0,0,.225);
     max-height: 15vh;
@@ -36,10 +36,12 @@ nav form button
 .container
 {
     min-height: 75vh;
+    height: 75vh;
     max-height: 75vh;
 }
 form
 {
+    height: inherit;
     margin: 0;
     padding: 0;
 }

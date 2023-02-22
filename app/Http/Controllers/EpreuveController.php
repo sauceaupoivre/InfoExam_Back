@@ -94,6 +94,14 @@ class EpreuveController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $examen = Examen::find($id);
+        $epreuve = Epreuve::find($examen->epreuve->id);
+        if($examen->delete())
+        {
+            $epreuve->delete();
+            session()->flash('success', 'Épreuve supprimée');
+            return redirect()->route('epreuves.index');
+        }
+
     }
 }

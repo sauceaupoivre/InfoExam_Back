@@ -10,7 +10,7 @@
             @yield('title')
         </title>
 
-        <link rel="icon" type="image/x-icon" href="favicon.png">
+        <link rel="icon" type="image/x-icon" href="{{asset("assets/favicon.png")}}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
@@ -73,7 +73,7 @@
         </div>
 
         @section('footer')
-            <div class="footer">
+            <div class="footer mt-4">
                 <div class="d-flex align-items-center">
                     <p class="text-muted m-1">Créée par</p>
                     <img src="{{asset("assets/logo/Qlopex.png")}}">
