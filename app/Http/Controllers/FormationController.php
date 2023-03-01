@@ -75,7 +75,14 @@ class FormationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $formation = Formation::find($id);
+        $données = $request;
+        $formation->nom = $données->nom;
+        $formation->code = $données->code;
+        $formation->serie = $données->numeros;
+        $formation->academie = $données->academie;
+        $formation->save();
+        return redirect()->back()->with('success', 'La formation a été modifié avec succès.');
     }
 
     /**
@@ -86,6 +93,13 @@ class FormationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $formation = Formation::find($id);
+        try {
+            $formation->delete();
+                return redirect()->route('formations.index')->with('success', 'Formation modifiée avec succès.');
+
+        } catch (\Throwable $th) {
+            return redirect()->route('formations.index')->with('error', 'Cette formation est utilisée par une épreuve');
+        }
     }
 }

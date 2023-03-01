@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Salle;
 use Illuminate\Http\Request;
 
 class SalleController extends Controller
@@ -13,7 +14,8 @@ class SalleController extends Controller
      */
     public function index()
     {
-        //
+        $salles = Salle::all();
+        return view('salles', compact('salles'));
     }
 
     /**
@@ -34,7 +36,16 @@ class SalleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $salle = new Salle;
+        $salle->nom = $request->nom;
+        if($salle->save()){
+            session()->flash('success', 'Salle créée');
+            return redirect()->route('salles.index');
+        }
+        else{
+            session()->flash('error', 'Erreur salle');
+            return redirect()->route('salles.index');
+        }
     }
 
     /**
@@ -45,7 +56,9 @@ class SalleController extends Controller
      */
     public function show($id)
     {
-        //
+        $salle = Salle::find($id);
+        return view('salle-show',compact('salle'));
+
     }
 
     /**
@@ -68,7 +81,14 @@ class SalleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $salle = Salle::find($id);
+
+        $salle->nom = $request->nom;
+
+        if($salle->save()){
+            session()->flash('success', 'Salle modifiée');
+            return redirect()->route('salles.index');
+        }
     }
 
     /**
@@ -79,6 +99,11 @@ class SalleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $salle = Salle::find($id);
+        if($salle->delete())
+        {
+            session()->flash('success', 'Salle supprimée');
+            return redirect()->route('salles.index');
+        }
     }
 }

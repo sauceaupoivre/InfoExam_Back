@@ -37,6 +37,9 @@
                                 <a class="{{ request()->routeIs('formations.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('formations.index')}}"><button type="button" class="btn btn-info">FORMATIONS <i class="bi bi-journal"></i></button><span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item">
+                                <a class="{{ request()->routeIs('salles.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('salles.index')}}"><button type="button" class="btn btn-success">SALLES <i class="bi bi-door-open"></i></button><span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="{{ request()->routeIs('alertes.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('alertes.index')}}"><button type="button" class="btn btn-warning">ALERTES <i class="bi bi-bell"></i></button><span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item d-flex align-items-center">

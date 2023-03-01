@@ -78,6 +78,18 @@ td
     --bs-btn-active-bg:rgb(253,186,50) !important;
     --bs-btn-active-border-color:rgb(241, 170, 28) !important;
 }
+.btn-success
+{
+    --bs-btn-bg:rgb(95, 136, 193) !important;
+    --bs-btn-color: #000 !important;
+    --bs-btn-hover-color : #000 !important;
+    --bs-btn-border-color:rgb(92, 123, 167) !important;
+    --bs-btn-hover-bg:rgb(85, 118, 163) !important;
+    --bs-btn-hover-border-color:rgb(95, 136, 193)!important;
+    --bs-btn-active-bg:rgb(95, 136, 193) !important;
+    --bs-btn-active-border-color:rgb(81, 117, 167) !important;
+
+}
 .btn-warning
 {
     --bs-btn-bg:rgb(234,36,135) !important;

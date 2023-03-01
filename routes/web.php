@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\API\ApiController;
-
+use App\Http\Controllers\SalleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +20,11 @@ use App\Http\Controllers\API\ApiController;
 */
 
 Route::get('/', function () {
-    return view('formations');
+    return redirect()->route('formations.index');
 })->middleware(['auth', 'isadmin']);
 
-Route::get('/home', function () {return view('formations');})->middleware(['auth', 'isadmin'])->name('home');
+Route::get('/home', function () {return redirect()->route('formations.index');})->middleware(['auth', 'isadmin'])->name('home');
+
 
 Route::resource('epreuves', EpreuveController::class);
 
@@ -32,6 +33,9 @@ Route::resource('formations', FormationController::class);
 Route::resource('alertes', AlerteController::class);
 
 Route::resource('examens', ExamenController::class);
+
+Route::resource('salles', SalleController::class);
+
 
 // Route API
 Route::apiResource("api", ApiController::class)->middleware(['auth', 'isadmin']);;
