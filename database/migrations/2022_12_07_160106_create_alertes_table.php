@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('titre');
             $table->string('description');
+            $table->string('pdf')->nullable();
 
             $table->unsignedBigInteger('examen_id');
             $table->foreign('examen_id')->references('id')->on('examens');

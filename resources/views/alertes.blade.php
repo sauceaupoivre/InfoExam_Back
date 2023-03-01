@@ -3,7 +3,7 @@
 
 @section('content')
 
-<form action="{{route('alertes.store')}}" method="POST" class="mt-4">
+<form action="{{route('alertes.store')}}" method="POST" enctype="multipart/form-data" class="mt-4">
     @csrf
     <h4 class="text-center mb-3">Veuillez choisir une date d'épreuve</h4>
     <div class="input-group m-auto w-50">
@@ -30,6 +30,11 @@
                 </div>
                 <div class="mb-3">
                     <textarea class="form-control" name="description" placeholder="Description..." rows="3" value="{{old('description')}}" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="ms-2 mb-1" for="pdf">Envoi de pdf :</label>
+                    <input type="file"  name="pdf" id="pdf" placeholder="Envoi pdf" accept=".pdf" class="form-control">
                 </div>
             </div>
             <hr>

@@ -43,19 +43,23 @@ class AlerteController extends Controller
      */
     public function store(Request $request)
     {
+        $alert = new Alerte;
+        $alert->titre = $request->titre;
+        $alert->description = $request->description;
+        $alert->examen_id = $request->epreuves;
 
-        try {
-            $a = new Alerte;
-            $a->titre = $request->titre;
-            $a->description = $request->description;
-            $a->examen_id = $request->epreuves;
-
-            $a->save();
-
+        //pdf
+        if($request['pdf'] != null){
+            $pdf = $request->file('pdf');
+            $input['file'] = time().'.'.$pdf->getClientOriginalExtension();
+            $destinationPath = public_path('/pdf');
+            $pdf->move($destinationPath, $input['file']);
+            $alert->pdf = $input['file'];
+        }
+        if($alert->save()){
             session()->flash('success', 'Alerte envoyée');
-        } catch (\Throwable $th) {
+        }else{
             session()->flash('error', "Erreur lors de l'envoi de l'alerte");
-            //throw $th;
         }
         return redirect()->route('alertes.index');
     }
