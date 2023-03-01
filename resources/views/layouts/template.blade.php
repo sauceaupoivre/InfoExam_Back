@@ -75,8 +75,12 @@
         @section('footer')
             <div class="footer mt-4">
                 <div class="d-flex align-items-center">
-                    <p class="text-muted m-1">Créée par</p>
+                    <p class="text-muted m-1">CRÉÉ PAR</p>
                     <img src="{{asset("assets/logo/Qlopex.png")}}">
+                </div>
+                <div class="d-flex">
+                    <a href="http://localhost/InfoExam_Back/public/api/" class="text-muted me-1" style="text-decoration: none">API</a> |
+                    <a href="http://localhost/InfoExam_Back/public/api/" class="text-muted ms-1" style="text-decoration: none">DOCS</a>
                 </div>
             </div>
         @show
