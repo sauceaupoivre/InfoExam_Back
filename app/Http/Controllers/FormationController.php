@@ -28,9 +28,15 @@ class FormationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $formation = new Formation();
+        $formation->nom = $request->nom;
+        $formation->code = $request->code;
+        $formation->serie = $request->numeros;
+        $formation->academie = $request->academie;
+        $formation->save();
+        return redirect()->back()->with('success', 'La formation a vien été créee.');
     }
 
     /**
