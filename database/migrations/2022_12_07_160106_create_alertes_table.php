@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('titre');
             $table->string('description');
             $table->string('pdf')->nullable();
+            $table->boolean('done')->default(0);
 
             $table->unsignedBigInteger('examen_id');
             $table->foreign('examen_id')->references('id')->on('examens');

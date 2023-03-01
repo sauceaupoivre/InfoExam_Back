@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="ms-2 mb-1" for="pdf">Envoi de pdf :</label>
+                    <label class="ms-2 mb-1" for="pdf">Envoi de pdf &#40;Optionnel&#41; :</label>
                     <input type="file"  name="pdf" id="pdf" placeholder="Envoi pdf" accept=".pdf" class="form-control">
                 </div>
             </div>
