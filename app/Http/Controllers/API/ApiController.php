@@ -27,8 +27,8 @@ class ApiController extends Controller
     public function cartouche($id)
     {
         try {
-            $examen = Examen::find($id);
-            return response()->json($examen->load('salle','alertes','formation','epreuve'));
+            $cartouche = Examen::find($id);
+            return response()->json($cartouche->load('salle','alertes','formation','epreuve'));
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -36,8 +36,8 @@ class ApiController extends Controller
     public function cartouchesByDate($date)
     {
         try {
-            $examens = Examen::where('date','LIKE','%'.$date.'%')->get();
-            return response()->json($examens->load('salle','alertes','formation','epreuve'));
+            $cartouchesByDate = Examen::where('date','LIKE','%'.$date.'%')->get();
+            return response()->json($cartouchesByDate->load('salle','alertes','formation','epreuve'));
         } catch (\Throwable $th) {
             //throw $th;
         }
