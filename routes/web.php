@@ -26,20 +26,20 @@ Route::get('/', function () {
 Route::get('/home', function () {return redirect()->route('formations.index');})->middleware(['auth', 'isadmin'])->name('home');
 
 
-Route::resource('epreuves', EpreuveController::class);
+Route::resource('epreuves', EpreuveController::class)->middleware(['auth', 'isadmin']);
 
-Route::resource('formations', FormationController::class);
+Route::resource('formations', FormationController::class)->middleware(['auth', 'isadmin']);
 
-Route::resource('alertes', AlerteController::class);
+Route::resource('alertes', AlerteController::class)->middleware(['auth', 'isadmin']);
 
-Route::resource('examens', ExamenController::class);
+Route::resource('examens', ExamenController::class)->middleware(['auth', 'isadmin']);
 
-Route::resource('salles', SalleController::class);
+Route::resource('salles', SalleController::class)->middleware(['auth', 'isadmin']);
 
 
 // Route API
-Route::apiResource("api", ApiController::class)->middleware(['auth', 'isadmin']);;
-Route::get('/api/date/{date}', [ApiController::class , 'showByDate'])->name("showByDate")->middleware(['auth', 'isadmin']);;
+Route::apiResource("api", ApiController::class)->middleware(['auth', 'isadmin']);
+Route::get('/api/date/{date}', [ApiController::class , 'showByDate'])->name("showByDate")->middleware(['auth', 'isadmin']);
 
 Route::middleware([
     'auth:sanctum',

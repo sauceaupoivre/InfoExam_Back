@@ -84,7 +84,6 @@ class FormationController extends Controller
         $formation = Formation::find($id);
         $données = $request;
         $formation->nom = $données->nom;
-        $formation->code = $données->code;
         $formation->serie = $données->numeros;
         $formation->academie = $données->academie;
         $formation->save();

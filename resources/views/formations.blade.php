@@ -21,10 +21,6 @@
                         <input type="text" class="form-control" id="name" name="nom">
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Code : </label>
-                        <input type="text" class="form-control" id="email" name="code">
-                    </div>
-                    <div class="mb-3">
                         <label for="message" class="form-label">Serie : </label>
                         <input type="text" class="form-control" id="message" rows="3" name="numeros">
                     </div>
