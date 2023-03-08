@@ -38,8 +38,12 @@ Route::resource('salles', SalleController::class)->middleware(['auth', 'isadmin'
 
 
 // Route API
-Route::apiResource("api", ApiController::class)->middleware(['auth', 'isadmin']);
-Route::get('/api/date/{date}', [ApiController::class , 'showByDate'])->name("showByDate")->middleware(['auth', 'isadmin']);
+Route::get('/api/cartouches/date/{date}', [ApiController::class , 'cartouchesByDate'])->name("cartouchesByDate");
+Route::get('/api/cartouches/all', [ApiController::class , 'allCartouches'])->name("allCartouches");
+Route::get('/api/cartouches/{id}', [ApiController::class , 'cartouche'])->name("cartouche");
+
+Route::get('/api/salles/all', [ApiController::class , 'allSalles'])->name("allSalles");
+
 
 Route::middleware([
     'auth:sanctum',

@@ -15,7 +15,7 @@ class ApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function allCartouches()
     {
         try {
             $cartouches = Examen::with('salle','alertes','formation','epreuve')->get();
@@ -24,25 +24,7 @@ class ApiController extends Controller
             //throw $th;
         }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function cartouche($id)
     {
         try {
             $examen = Examen::find($id);
@@ -51,7 +33,7 @@ class ApiController extends Controller
             //throw $th;
         }
     }
-    public function showByDate($date)
+    public function cartouchesByDate($date)
     {
         try {
             $examens = Examen::where('date','LIKE','%'.$date.'%')->get();
@@ -59,29 +41,16 @@ class ApiController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
         }
-
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function allSalles()
     {
-        //
+        try {
+            $salles = Salle::all();
+            return response()->json($salles);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
 }
