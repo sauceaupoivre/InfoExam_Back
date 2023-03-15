@@ -31,13 +31,16 @@
                     <div class="collapse navbar-collapse justify-content-md-center text-center p-3" id="navbar">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="{{ request()->routeIs('epreuves.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('epreuves.index')}}"><button type="button" class="btn btn-light">ÉPREUVES <i class="bi bi-pen"></i></button><span class="sr-only"></span></a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="{{ request()->routeIs('formations.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('formations.index')}}"><button type="button" class="btn btn-info">FORMATIONS <i class="bi bi-journal"></i></button><span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="{{ request()->routeIs('salles.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('salles.index')}}"><button type="button" class="btn btn-success">SALLES <i class="bi bi-door-open"></i></button><span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="{{ request()->routeIs('epreuves.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('epreuves.index')}}"><button type="button" class="btn btn-light">ÉPREUVES <i class="bi bi-pen"></i></button><span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="{{ request()->routeIs('examens.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('examens.index')}}"><button type="button" class="btn btn-examen">EXAMEN <i class="bi bi-buildings"></i></button><span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="{{ request()->routeIs('alertes.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('alertes.index')}}"><button type="button" class="btn btn-warning">ALERTES <i class="bi bi-bell"></i></button><span class="sr-only"></span></a>
