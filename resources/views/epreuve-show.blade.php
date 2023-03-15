@@ -21,8 +21,17 @@
                     <input id="matiere" type="text" name="matiere" class="form-control" value="{{$epreuve->matiere}}" placeholder="{{$epreuve->matiere}}">
                 </div>
 
+                <h1 class="modal-title fs-5 mt-4" id="exampleModalLabel">Sélection des formations</h1>
                 <hr>
-
+                <div class="d-flex justify-content-around flex-wrap p-2 mt-1">
+                    @foreach ($formations as $formation)
+                        <div>
+                            <label >{{$formation->nom}}</label>
+                            <input type='checkbox' name='formations[]' value='{{$formation->id}}' {{ $epreuve->formations->contains($formation->id) ? 'checked' : ''  }}/>
+                        </div>
+                    @endforeach
+                </div>
+                <hr>
                 <!-- Heures -->
                 <div class="input-group mb-2">
                     <span class="input-group-text">Heure début : </span>
@@ -37,11 +46,12 @@
                     <input type="time" id="loge" name="loge" value="02:00" class="form-control" min="00:00" max="24:00" required>
                 </div>
 
-            </div>
         </div>
         <div class="card-footer text-center">
             <button type="submit" class="btn btn-primary">Modifer</button>
         </div>
+    </div>
+
     </div>
 </form>
 

@@ -52,17 +52,20 @@ class EpreuveController extends Controller
         {
             $epreuve->matiere = $request->matiere;
         }
-        $epreuve->debut = DateTime::createFromFormat("H:i", $request->debut);
-        $epreuve->fin = DateTime::createFromFormat("H:i", $request->fin);
+
         $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
         if($epreuve->save()){
-
-                session()->flash('success', 'Épreuve créée');
-                return redirect()->route('epreuves.index');
+            foreach($request->formations as $formation){
+                $f = Formation::find($formation);
+                $epreuve->formations()->attach($f);
+            }
+            session()->flash('success', 'Épreuve créée');
         }
         else{
+            session()->flash('error', 'Erreur');
             $epreuve->delete();
         }
+        return redirect()->route('epreuves.index');
     }
 
     /**
@@ -105,16 +108,20 @@ class EpreuveController extends Controller
         {
             $epreuve->matiere = $request->matiere;
         }
-        $epreuve->debut = DateTime::createFromFormat("H:i", $request->debut);
-        $epreuve->fin = DateTime::createFromFormat("H:i", $request->fin);
         $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
+
+        $epreuve->formations()->sync($request->formations);
 
         if($epreuve->save()){
 
             session()->flash('success', 'Épreuve modifiée');
-            return redirect()->route('epreuves.index');
+
+        }else{
+            session()->flash('error', 'Érreur');
 
         }
+        return redirect()->route('epreuves.index');
+
     }
 
     /**
@@ -125,11 +132,9 @@ class EpreuveController extends Controller
      */
     public function destroy($id)
     {
-        $examen = Examen::find($id);
-        $epreuve = Epreuve::find($examen->epreuve->id);
-        if($examen->delete())
+        $epreuve = Epreuve::find($id);
+        if($epreuve->delete())
         {
-            $epreuve->delete();
             session()->flash('success', 'Épreuve supprimée');
             return redirect()->route('epreuves.index');
         }

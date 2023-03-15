@@ -27,6 +27,8 @@ return new class extends Migration
             $table->text('regle')->nullable();
 
             $table->dateTime('date');
+            $table->dateTime('debut');
+            $table->dateTime('fin');
 
             $table->unsignedBigInteger('formation_id');
             $table->foreign('formation_id')->references('id')->on('formations');
