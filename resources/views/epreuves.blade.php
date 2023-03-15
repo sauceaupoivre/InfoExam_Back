@@ -173,7 +173,7 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
+                        </div>
 
                         <tr>
                             <td>{{date("d-m-Y",strtotime($e->date))}}</td>
