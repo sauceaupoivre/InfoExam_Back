@@ -110,6 +110,16 @@ td
     --bs-btn-active-border-color:rgb(33, 104, 158) !important;
 
 }
+.btn-examen
+{
+    --bs-btn-bg:rgb(255,255,255) !important;
+    --bs-btn-border-color:rgb(0,0,0) !important;
+    --bs-btn-hover-bg:rgb(255, 255, 255) !important;
+    --bs-btn-hover-border-color:rgb(0, 0, 0) !important;
+    --bs-btn-active-bg:rgb(255,255,255) !important;
+    --bs-btn-active-border-color:rgb(0, 0, 0) !important;
+    color: black;
+}
 .card-header-blue
 {
     background-color: rgb(9,161,219) !important;

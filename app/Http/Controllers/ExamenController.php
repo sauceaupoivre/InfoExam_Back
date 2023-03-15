@@ -109,7 +109,7 @@ class ExamenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $examen = Examen::find($id);
+        /*$examen = Examen::find($id);
         $epreuve = Epreuve::find($examen->epreuve->id);
 
         $epreuve->examen_concours = $request->examen_concours;
@@ -140,7 +140,7 @@ class ExamenController extends Controller
                 session()->flash('success', 'Épreuve modifiée');
                 return redirect()->route('epreuves.index');
             }
-        }
+        }*/
     }
 
     /**
@@ -151,6 +151,6 @@ class ExamenController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }
