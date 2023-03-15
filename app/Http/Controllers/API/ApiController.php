@@ -52,5 +52,25 @@ class ApiController extends Controller
         }
     }
 
-
+    public function examens()
+    {
+    try
+    {
+        $examens = Examen::all();
+        return response()->json($examens);
+    }
+    catch(\Throwable $th)
+    {
+        //throw $th;
+    }
+    }
+    public function examen(Request $request)
+    {
+        $examen = Examen::Where("salle_id","=",$request->salle)
+                            ->where("date","=",$request->date)
+                            ->where("formation_id","=",$request->formation)
+                            ->where("epreuve_id","=",$request->epreuve)
+                            ->first();
+        return response()->json($examen);
+    }
 }
