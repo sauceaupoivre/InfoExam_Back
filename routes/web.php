@@ -5,7 +5,6 @@ use App\Http\Controllers\EpreuveController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\ExamenController;
-use App\Http\Controllers\API\ApiController;
 use App\Http\Controllers\SalleController;
 
 /*
@@ -35,15 +34,6 @@ Route::resource('alertes', AlerteController::class)->middleware(['auth', 'isadmi
 Route::resource('examens', ExamenController::class)->middleware(['auth', 'isadmin']);
 
 Route::resource('salles', SalleController::class)->middleware(['auth', 'isadmin']);
-
-
-// Route API
-Route::get('/api/cartouches/date/{date}', [ApiController::class , 'cartouchesByDate'])->name("cartouchesByDate");
-Route::get('/api/cartouches/all', [ApiController::class , 'allCartouches'])->name("allCartouches");
-Route::get('/api/cartouches/{id}', [ApiController::class , 'cartouche'])->name("cartouche");
-
-Route::get('/api/salles/all', [ApiController::class , 'allSalles'])->name("allSalles");
-
 
 Route::middleware([
     'auth:sanctum',
