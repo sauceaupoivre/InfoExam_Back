@@ -32,15 +32,7 @@
                     @endforeach
                 </div>
                 <hr>
-                <!-- Heures -->
-                <div class="input-group mb-2">
-                    <span class="input-group-text">Heure début : </span>
-                    <input type="time" id="debut" name="debut" value="{{date('H:i',strtotime($epreuve->debut))}}" class="form-control" min="00:00" max="24:00" required>
-                </div>
-                <div class="input-group mb-2">
-                    <span class="input-group-text">Heure fin : </span>
-                    <input type="time" id="fin" name="fin" value="{{date('H:i',strtotime($epreuve->fin))}}" class="form-control" min="00:00" max="24:00" required>
-                </div>
+
                 <div class="input-group mb-2">
                     <span class="input-group-text">Mise en loge : </span>
                     <input type="time" id="loge" name="loge" value="02:00" class="form-control" min="00:00" max="24:00" required>

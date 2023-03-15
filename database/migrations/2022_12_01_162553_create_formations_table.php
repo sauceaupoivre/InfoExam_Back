@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nom');
-            $table->string('serie');
+            $table->string('serie')->nullable();
             $table->string('academie');
         });
     }

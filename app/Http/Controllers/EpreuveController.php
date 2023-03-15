@@ -55,9 +55,11 @@ class EpreuveController extends Controller
 
         $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
         if($epreuve->save()){
-            foreach($request->formations as $formation){
-                $f = Formation::find($formation);
-                $epreuve->formations()->attach($f);
+            if(is_array($request->formations)){
+                foreach($request->formations as $formation){
+                    $f = Formation::find($formation);
+                    $epreuve->formations()->attach($f);
+            }
             }
             session()->flash('success', 'Épreuve créée');
         }
@@ -133,11 +135,13 @@ class EpreuveController extends Controller
     public function destroy($id)
     {
         $epreuve = Epreuve::find($id);
+        $epreuve->formations()->detach($epreuve->formations);
         if($epreuve->delete())
         {
             session()->flash('success', 'Épreuve supprimée');
             return redirect()->route('epreuves.index');
         }
+
 
     }
 }

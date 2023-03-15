@@ -23,12 +23,17 @@
                         <h1 class="modal-title fs-5 mt-4" id="exampleModalLabel">Sélection des formations</h1>
                         <hr>
                         <div class="d-flex justify-content-around flex-wrap p-2 mt-1">
-                            @foreach ($formations as $formation)
+
+                            @forelse ($formations as $formation)
                                 <div>
                                     <label >{{$formation->nom}}</label>
                                     <input type='checkbox' name='formations[]' value='{{$formation->id}}' />
                                 </div>
-                            @endforeach
+                            @empty
+                                <div>
+                                    <p>Pas de formations enregistrées</p>
+                                </div>
+                            @endforelse
                         </div>
 
                         <hr>
@@ -88,7 +93,7 @@
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{$e->matiere}}</h1>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
