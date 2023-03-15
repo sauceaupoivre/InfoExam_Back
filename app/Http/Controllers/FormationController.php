@@ -32,7 +32,6 @@ class FormationController extends Controller
     {
         $formation = new Formation();
         $formation->nom = $request->nom;
-        $formation->code = $request->code;
         $formation->serie = $request->numeros;
         $formation->academie = $request->academie;
         $formation->save();
