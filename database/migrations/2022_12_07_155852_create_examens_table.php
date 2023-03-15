@@ -26,20 +26,18 @@ return new class extends Migration
             $table->text('commentaire')->nullable();
             $table->text('regle')->nullable();
 
-            $table->dateTime('date');
             $table->dateTime('debut');
             $table->dateTime('fin');
+            $table->dateTime('date');
+
+            $table->unsignedBigInteger('salle_id');
+            $table->foreign('salle_id')->references('id')->on('salles');
 
             $table->unsignedBigInteger('formation_id');
             $table->foreign('formation_id')->references('id')->on('formations');
 
             $table->unsignedBigInteger('epreuve_id');
             $table->foreign('epreuve_id')->references('id')->on('epreuves');
-
-            $table->unsignedBigInteger('salle_id');
-            $table->foreign('salle_id')->references('id')->on('salles');
-
-
         });
     }
 
