@@ -19,9 +19,9 @@ use App\Http\Controllers\API\ApiController;
 Route::get('/cartouches/date/{date}', [ApiController::class , 'cartouchesByDate'])->name("cartouchesByDate");
 Route::get('/cartouches/all', [ApiController::class , 'allCartouches'])->name("allCartouches");
 Route::get('/cartouches/{id}', [ApiController::class , 'cartouche'])->name("cartouche");
-
 Route::get('/salles/all', [ApiController::class , 'allSalles'])->name("allSalles");
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get("/examens",[ApiController::Class,"examens"])->name("allExamens");
+route::post("/examen",[ApiController::class,"examen"])->name("oneExamen");

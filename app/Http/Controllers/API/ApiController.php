@@ -73,6 +73,4 @@ class ApiController extends Controller
                             ->first();
         return response()->json($examen);
     }
-
-
 }
