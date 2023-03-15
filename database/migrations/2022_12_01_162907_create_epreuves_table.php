@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('examen_concours');
-            $table->string('epreuve');
-            $table->string('session');
+            $table->string('examen_concours')->nullable();
+            $table->string('epreuve')->nullable();
+            $table->string('session')->nullable();
 
             $table->string('matiere')->nullable();
 

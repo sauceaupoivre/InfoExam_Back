@@ -7,6 +7,7 @@ use App\Models\Examen;
 use App\Models\Formation;
 use App\Models\Salle;
 use Illuminate\Http\Request;
+use DateTime;
 
 class EpreuveController extends Controller
 {
@@ -22,10 +23,10 @@ class EpreuveController extends Controller
      */
     public function index()
     {
-        $examens = Examen::paginate(5);
+        $epreuves = Epreuve::paginate(5);
         $salles = Salle::all();
         $formations = Formation::all();
-        return view('epreuves',compact('examens','salles','formations'));
+        return view('epreuves',compact('epreuves','salles','formations'));
     }
 
     /**
@@ -46,7 +47,22 @@ class EpreuveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $epreuve = new Epreuve;
+        if(isset($request->matiere))
+        {
+            $epreuve->matiere = $request->matiere;
+        }
+        $epreuve->debut = DateTime::createFromFormat("H:i", $request->debut);
+        $epreuve->fin = DateTime::createFromFormat("H:i", $request->fin);
+        $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
+        if($epreuve->save()){
+
+                session()->flash('success', 'Épreuve créée');
+                return redirect()->route('epreuves.index');
+        }
+        else{
+            $epreuve->delete();
+        }
     }
 
     /**
@@ -57,10 +73,10 @@ class EpreuveController extends Controller
      */
     public function show($id)
     {
-        $examen = Examen::find($id);
+        $epreuve = epreuve::find($id);
         $salles = Salle::all();
         $formations = Formation::all();
-        return view('epreuve-show',compact('examen','salles','formations'));
+        return view('epreuve-show',compact('epreuve','salles','formations'));
     }
 
     /**
@@ -83,7 +99,22 @@ class EpreuveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $epreuve = Epreuve::find($id);
+
+        if(isset($request->matiere))
+        {
+            $epreuve->matiere = $request->matiere;
+        }
+        $epreuve->debut = DateTime::createFromFormat("H:i", $request->debut);
+        $epreuve->fin = DateTime::createFromFormat("H:i", $request->fin);
+        $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
+
+        if($epreuve->save()){
+
+            session()->flash('success', 'Épreuve modifiée');
+            return redirect()->route('epreuves.index');
+
+        }
     }
 
     /**

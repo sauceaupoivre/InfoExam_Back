@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Examen;
 use App\Models\Epreuve;
+use App\Models\Salle;
+use App\Models\Formation;
 use Illuminate\Http\Request;
 use DateTime;
 
@@ -16,7 +18,10 @@ class ExamenController extends Controller
      */
     public function index()
     {
-        //
+        $examens = Examen::paginate(5);
+        $salles = Salle::all();
+        $formations = Formation::all();
+        return view('examens',compact('examens','salles','formations'));
     }
 
     /**
