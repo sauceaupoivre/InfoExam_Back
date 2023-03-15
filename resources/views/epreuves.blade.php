@@ -15,30 +15,30 @@
                     </div>
                     <div class="modal-body">
 
-                        <!-- UNIQUES DEMATERIALISE -->
                         <div class="input-group mb-2">
                             <span class="input-group-text">Matière : </span>
                             <input id="matiere" type="text" name="matiere" class="form-control">
                         </div>
 
+                        <h1 class="modal-title fs-5 mt-4" id="exampleModalLabel">Sélection des formations</h1>
+                        <hr>
+                        <div class="d-flex justify-content-around flex-wrap p-2 mt-1">
+                            @foreach ($formations as $formation)
+                                <div>
+                                    <label >{{$formation->nom}}</label>
+                                    <input type='checkbox' name='formations[]' value='{{$formation->id}}' />
+                                </div>
+                            @endforeach
+                        </div>
+
                         <hr>
 
-                        <div class="input-group">
+                        <div class="input-group mb-2">
                             <span class="input-group-text">Description: </span>
                             <input class="form-control" id="description" type="text" name="description">
                         </div>
 
-                        <hr>
-
                         <!-- Heures -->
-                        <div class="input-group mb-2">
-                            <span class="input-group-text">Heure début : </span>
-                            <input type="time" id="debut" name="debut" value="" class="form-control" min="00:00" max="24:00" required>
-                        </div>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text">Heure fin : </span>
-                            <input type="time" id="fin" name="fin" value="" class="form-control" min="00:00" max="24:00" required>
-                        </div>
                         <div class="input-group mb-2">
                             <span class="input-group-text">Mise en loge : </span>
                             <input type="time" id="loge" name="loge" value="02:00" class="form-control" min="00:00" max="24:00" required>
@@ -74,10 +74,9 @@
                     <thead>
                     <tr>
                         <th scope="col">Matière</th>
-                        <th scope="col">Début</th>
-                        <th scope="col">Fin</th>
                         <th scope="col">Mise en loge</th>
                         <th scope="col">Description</th>
+                        <th scope="col">Formations</th>
                         <th scope="col">Modifier/Supprimer</th>
                     </th>
                     </tr>
@@ -109,10 +108,16 @@
 
                         <tr>
                             <td>{{$e->matiere}}</td>
-                            <td>{{date("H",strtotime($e->debut))."h".date("i",strtotime($e->debut))}}</td>
-                            <td>{{date("H",strtotime($e->fin))."h".date("i",strtotime($e->fin))}}</td>
                             <td>{{date("H",strtotime($e->loge))."h".date("i",strtotime($e->loge))}}</td>
                             <td>{{$e->description}}</td>
+                            <td class="">
+                                @forelse ($e->formations as $formation)
+                                <span class="badge text-bg-secondary m-1">{{$formation->nom}}</span>
+
+                                @empty
+
+                                @endforelse
+                            </td>
                             <td>
                                 <a href="{{route('epreuves.show',$e->id)}}"><button class="btn btn-primary btn-small"><i class="bi bi-pencil-square"></i></button></a>
                                 <button class="btn btn-danger btn-small" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$e->id}}">
