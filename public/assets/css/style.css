@@ -51,6 +51,8 @@ td
 {
     border: 1px solid rgba(0,0,0,.225);
 }
+
+
 /* BOOTSTRAP OVERRIDE */
 .btn-outline-primary
 {
@@ -80,13 +82,13 @@ td
 }
 .btn-success
 {
-    --bs-btn-bg:rgb(95, 136, 193) !important;
+    --bs-btn-bg:#5f88c1 !important;
     --bs-btn-color: #000 !important;
     --bs-btn-hover-color : #000 !important;
     --bs-btn-border-color:rgb(92, 123, 167) !important;
-    --bs-btn-hover-bg:rgb(85, 118, 163) !important;
+    --bs-btn-hover-bg:#6f91c0 !important;
     --bs-btn-hover-border-color:rgb(95, 136, 193)!important;
-    --bs-btn-active-bg:rgb(95, 136, 193) !important;
+    --bs-btn-active-bg:#6f91c0 !important;
     --bs-btn-active-border-color:rgb(81, 117, 167) !important;
 
 }
@@ -112,12 +114,13 @@ td
 }
 .btn-examen
 {
-    --bs-btn-bg:rgb(255,255,255) !important;
-    --bs-btn-border-color:rgb(0,0,0) !important;
-    --bs-btn-hover-bg:rgb(255, 255, 255) !important;
-    --bs-btn-hover-border-color:rgb(0, 0, 0) !important;
-    --bs-btn-active-bg:rgb(255,255,255) !important;
-    --bs-btn-active-border-color:rgb(0, 0, 0) !important;
+    --bs-btn-bg:#ee6da1 !important;
+    --bs-btn-border-color:#ca6990 !important;
+    --bs-btn-hover-bg: #f87aac !important;
+    --bs-btn-hover-border-color:#ca6990 !important;
+    --bs-btn-active-bg:#f87aac !important;
+    --bs-btn-active-border-color:#ca6990 !important;
+    --bs-btn-hover-color:#000 !important;
     color: black;
 }
 .card-header-blue

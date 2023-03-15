@@ -22,7 +22,7 @@
 
                         <h1 class="modal-title fs-5 mt-4" id="exampleModalLabel">Sélection des formations</h1>
                         <hr>
-                        <div class="d-flex justify-content-around flex-wrap p-2 mt-1">
+                        <div class="d-flex justify-content-around flex-wrap p-2 mt-1" style="max-height: 200px;overflow-y:auto">
 
                             @forelse ($formations as $formation)
                                 <div>
@@ -114,13 +114,14 @@
                         <tr>
                             <td>{{$e->matiere}}</td>
                             <td>{{date("H",strtotime($e->loge))."h".date("i",strtotime($e->loge))}}</td>
-                            <td>{{$e->description}}</td>
-                            <td class="">
+                            <td>
+                                <small class="text-muted">{{$e->description}} {{ $e->description == "" ? 'Pas de description' : ''   }}</small>
+                            </td>
+                            <td >
                                 @forelse ($e->formations as $formation)
-                                <span class="badge text-bg-secondary m-1">{{$formation->nom}}</span>
-
+                                    <span class="badge text-bg-secondary m-1">{{$formation->nom}}</span>
                                 @empty
-
+                                    <small class="text-muted">Pas de formations associées</small>
                                 @endforelse
                             </td>
                             <td>
