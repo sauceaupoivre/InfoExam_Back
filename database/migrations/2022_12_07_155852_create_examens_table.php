@@ -19,6 +19,8 @@ return new class extends Migration
 
             $table->string('repere')->nullable();
 
+            $table->string('session')->nullable(); //Date Year
+
             $table->boolean('dictionnaire')->default(0);
             $table->boolean('calculatrice')->default(0);
             $table->boolean('estdematerialise');

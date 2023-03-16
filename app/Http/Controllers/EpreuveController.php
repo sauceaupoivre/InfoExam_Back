@@ -45,6 +45,8 @@ class EpreuveController extends Controller
     public function store(Request $request)
     {
         $epreuve = new Epreuve;
+        $epreuve->examen_concours = $request->examen_concours;
+        $epreuve->epreuve = $request->epreuve;
         if(isset($request->matiere))
         {
             $epreuve->matiere = $request->matiere;
@@ -103,6 +105,8 @@ class EpreuveController extends Controller
     {
         $epreuve = Epreuve::find($id);
 
+        $epreuve->examen_concours = $request->examen_concours;
+        $epreuve->epreuve = $request->epreuve;
         if(isset($request->matiere))
         {
             $epreuve->matiere = $request->matiere;

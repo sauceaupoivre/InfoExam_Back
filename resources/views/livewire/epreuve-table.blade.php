@@ -10,10 +10,17 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-
+                        <div class="input-group mb-2">
+                            <span class="input-group-text">Examen/Concours : </span>
+                            <input id="examen_concours" type="text" name="examen_concours" class="form-control" required>
+                        </div>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text">Épreuve : </span>
+                            <input id="epreuve" type="text" name="epreuve" class="form-control" required>
+                        </div>
                         <div class="input-group mb-2">
                             <span class="input-group-text">Matière : </span>
-                            <input id="matiere" type="text" name="matiere" class="form-control">
+                            <input id="matiere" type="text" name="matiere" class="form-control" required>
                         </div>
 
                         <h1 class="modal-title fs-5 mt-4" id="exampleModalLabel">Sélection des formations</h1>
@@ -82,6 +89,7 @@
                 <table class="table text-center">
                     <thead>
                     <tr>
+                        <th class="sort-th" scope="col">Épreuve</th>
                         <th class="sort-th" wire:click="sortBy('matiere')" scope="col">Matière <i class="bi bi-arrow-down-up"></i></th>
                         <th class="sort-th" wire:click="sortBy('loge')" scope="col">Mise en loge <i class="bi bi-arrow-down-up"></i></th>
                         <th class="sort-th" wire:click="sortBy('description')" scope="col">Description <i class="bi bi-arrow-down-up"></i></th>
@@ -116,6 +124,7 @@
                         </div>
 
                         <tr>
+                            <td>{{$e->epreuve}}</td>
                             <td>{{$e->matiere}}</td>
                             <td>{{date("H",strtotime($e->loge))."h".date("i",strtotime($e->loge))}}</td>
                             <td>
