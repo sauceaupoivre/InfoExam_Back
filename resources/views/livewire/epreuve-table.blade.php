@@ -89,7 +89,8 @@
                 <table class="table text-center">
                     <thead>
                     <tr>
-                        <th class="sort-th" scope="col">Épreuve</th>
+                        <th scope="col">Examen/Concours</th>
+                        <th scope="col">Épreuve</th>
                         <th class="sort-th" wire:click="sortBy('matiere')" scope="col">Matière <i class="bi bi-arrow-down-up"></i></th>
                         <th class="sort-th" wire:click="sortBy('loge')" scope="col">Mise en loge <i class="bi bi-arrow-down-up"></i></th>
                         <th class="sort-th" wire:click="sortBy('description')" scope="col">Description <i class="bi bi-arrow-down-up"></i></th>
@@ -124,6 +125,7 @@
                         </div>
 
                         <tr>
+                            <td>{{$e->examen_concours}}</td>
                             <td>{{$e->epreuve}}</td>
                             <td>{{$e->matiere}}</td>
                             <td>{{date("H",strtotime($e->loge))."h".date("i",strtotime($e->loge))}}</td>
@@ -153,7 +155,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5" class="text-muted">Pas d'épreuves</td>
+                            <td colspan="7" class="text-muted">Pas d'épreuves</td>
                         </tr>
 
                         @endforelse

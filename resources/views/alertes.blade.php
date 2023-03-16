@@ -21,7 +21,7 @@
     </div>
 
     <div class="card text-bg-light mb-3 mt-4">
-        <div class="card-header"><h4 class="text-center mb-0">ENVOYER UNE ALERTE</h4></div>
+        <div class="card-header card-header-blue"><h4 class="text-center text-white mb-0 ">ENVOYER UNE ALERTE</h4></div>
         <div class="card-body">
 
             <div class="overflow-auto" style="max-height:35vh">
