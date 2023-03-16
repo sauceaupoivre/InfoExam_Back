@@ -51,6 +51,10 @@ td
 {
     border: 1px solid rgba(0,0,0,.225);
 }
+.sort-th:hover{
+    font-weight: 900;
+    cursor: pointer;
+}
 
 
 /* BOOTSTRAP OVERRIDE */

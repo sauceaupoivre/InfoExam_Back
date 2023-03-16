@@ -23,10 +23,7 @@ class EpreuveController extends Controller
      */
     public function index()
     {
-        $epreuves = Epreuve::paginate(5);
-        $salles = Salle::all();
-        $formations = Formation::all();
-        return view('epreuves',compact('epreuves','salles','formations'));
+        return view('epreuves');
     }
 
     /**
@@ -52,7 +49,7 @@ class EpreuveController extends Controller
         {
             $epreuve->matiere = $request->matiere;
         }
-
+        $epreuve->description = $request->description;
         $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
         if($epreuve->save()){
             if(is_array($request->formations)){

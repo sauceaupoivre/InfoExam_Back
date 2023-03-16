@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="{{asset("assets/css/bootstrap.min.css")}}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-
+        @livewireStyles
     </head>
     <body>
 
@@ -85,8 +85,7 @@
                     <img src="{{asset("assets/logo/Qlopex_wide.png")}}">
                 </div>
                 <div class="d-flex">
-                    <a href="http://localhost/InfoExam_Back/public/api/" class="text-muted me-1" style="text-decoration: none">API</a> |
-                    <a href="http://localhost/InfoExam_Back/public/api/" class="text-muted ms-1" style="text-decoration: none">DOCS</a>
+                    <a href="{{ route('APIDocs')}}" class="text-muted me-1" style="text-decoration: none">API | DOCS</a>
                 </div>
             </div>
         @show
@@ -94,6 +93,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="{{asset("assets/js/bootstrap.bundle.min.js")}}"></script>
         <script src="{{asset("assets/js/script.js")}}"></script>
+        @livewireScripts
     </body>
 </html>
 

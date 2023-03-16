@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\SalleController;
+use App\Http\Livewire\ApiDocs;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::resource('alertes', AlerteController::class)->middleware(['auth', 'isadmi
 Route::resource('examens', ExamenController::class)->middleware(['auth', 'isadmin']);
 
 Route::resource('salles', SalleController::class)->middleware(['auth', 'isadmin']);
+
+Route::get('/api-docs', function () {return view('api-docs');})->name('APIDocs');
 
 Route::middleware([
     'auth:sanctum',
