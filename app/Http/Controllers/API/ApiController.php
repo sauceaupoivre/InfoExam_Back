@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Examen;
 use App\Models\Salle;
 use DateTime;
+use Illuminate\Http\JsonResponse;
 
 class ApiController extends Controller
 {
@@ -69,5 +70,21 @@ class ApiController extends Controller
                             ->where("epreuve_id",$epreuve_id)
                             ->first();
         return response()->json($examen);
+    }
+
+    /* PUT REQUESTS */
+    public function updateRepere(Request $request, $id){
+        $cartouche = Examen::find($id);
+        $cartouche->repere = $request->get('repere');
+        if($cartouche->save()){
+            return new JsonResponse($cartouche, 200);
+        }
+    }
+    public function updateComment(Request $request, $id){
+        $cartouche = Examen::find($id);
+        $cartouche->commentaire = $request->get('commentaire');
+        if($cartouche->save()){
+            return new JsonResponse($cartouche, 200);
+        }
     }
 }

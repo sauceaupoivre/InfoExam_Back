@@ -26,7 +26,8 @@ Route::get('/epreuves/date/{date}', [ApiController::class , 'epreuvesBydate'])->
 
 Route::get("/examen/{date}/{salle_id}/{formation_id}/{epreuve_id}",[ApiController::class,"examen"])->name("oneExamen");
 
-
+Route::put('/cartouches/repere/{id}', [ApiController::class, 'updateRepere'])->name("updateRepere");
+Route::put('/cartouches/commentaire/{id}', [ApiController::class, 'updateComment'])->name("updateComment");
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
