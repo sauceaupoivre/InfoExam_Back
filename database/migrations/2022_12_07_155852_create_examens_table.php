@@ -19,6 +19,8 @@ return new class extends Migration
 
             $table->string('repere')->nullable();
 
+            $table->string('session')->nullable(); //Date Year
+
             $table->boolean('dictionnaire')->default(0);
             $table->boolean('calculatrice')->default(0);
             $table->boolean('estdematerialise');
@@ -30,16 +32,14 @@ return new class extends Migration
             $table->time('debut');
             $table->time('fin');
 
+            $table->unsignedBigInteger('salle_id');
+            $table->foreign('salle_id')->references('id')->on('salles');
+
             $table->unsignedBigInteger('formation_id');
             $table->foreign('formation_id')->references('id')->on('formations');
 
             $table->unsignedBigInteger('epreuve_id');
             $table->foreign('epreuve_id')->references('id')->on('epreuves');
-
-            $table->unsignedBigInteger('salle_id');
-            $table->foreign('salle_id')->references('id')->on('salles');
-
-
         });
     }
 

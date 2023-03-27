@@ -23,10 +23,7 @@ class EpreuveController extends Controller
      */
     public function index()
     {
-        $epreuves = Epreuve::paginate(5);
-        $salles = Salle::all();
-        $formations = Formation::all();
-        return view('epreuves',compact('epreuves','salles','formations'));
+        return view('epreuves');
     }
 
     /**
@@ -48,16 +45,20 @@ class EpreuveController extends Controller
     public function store(Request $request)
     {
         $epreuve = new Epreuve;
+        $epreuve->examen_concours = $request->examen_concours;
+        $epreuve->epreuve = $request->epreuve;
         if(isset($request->matiere))
         {
             $epreuve->matiere = $request->matiere;
         }
-
+        $epreuve->description = $request->description;
         $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
         if($epreuve->save()){
-            foreach($request->formations as $formation){
-                $f = Formation::find($formation);
-                $epreuve->formations()->attach($f);
+            if(is_array($request->formations)){
+                foreach($request->formations as $formation){
+                    $f = Formation::find($formation);
+                    $epreuve->formations()->attach($f);
+            }
             }
             session()->flash('success', 'Épreuve créée');
         }
@@ -104,6 +105,8 @@ class EpreuveController extends Controller
     {
         $epreuve = Epreuve::find($id);
 
+        $epreuve->examen_concours = $request->examen_concours;
+        $epreuve->epreuve = $request->epreuve;
         if(isset($request->matiere))
         {
             $epreuve->matiere = $request->matiere;
@@ -133,6 +136,7 @@ class EpreuveController extends Controller
     public function destroy($id)
     {
         $epreuve = Epreuve::find($id);
+        $epreuve->formations()->detach($epreuve->formations);
         if($epreuve->delete())
         {
             session()->flash('success', 'Épreuve supprimée');

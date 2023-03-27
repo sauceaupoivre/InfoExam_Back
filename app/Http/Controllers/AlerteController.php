@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alerte;
+use App\Models\Examen;
 use App\Models\Salle;
 use Illuminate\Console\View\Components\Alert;
 
@@ -43,24 +44,30 @@ class AlerteController extends Controller
      */
     public function store(Request $request)
     {
-        $alert = new Alerte;
-        $alert->titre = $request->titre;
-        $alert->description = $request->description;
-        $alert->examen_id = $request->epreuves;
+        $examens = Examen::where('salle_id',$request->salle)->get();
 
-        //pdf
-        if($request['pdf'] != null){
-            $pdf = $request->file('pdf');
-            $input['file'] = time().'.'.$pdf->getClientOriginalExtension();
-            $destinationPath = public_path('/pdf');
-            $pdf->move($destinationPath, $input['file']);
-            $alert->pdf = $input['file'];
+        foreach($examens as $examen){
+            $alert = new Alerte;
+            $alert->titre = $request->titre;
+            $alert->description = $request->description;
+            $alert->examen_id = $examen->id;
+            //pdf
+            if($request['pdf'] != null){
+                $pdf = $request->file('pdf');
+                $input['file'] = $pdf->getClientOriginalName();
+                $destinationPath = public_path('/pdf');
+                $alert->pdf = $input['file'];
+            }
+            if($alert->save()){
+                continue;
+            }else{
+                break;
+                session()->flash('error', "Erreur lors de l'envoi de l'alerte");
+                return redirect()->route('alertes.index');
+            }
         }
-        if($alert->save()){
-            session()->flash('success', 'Alerte envoyée');
-        }else{
-            session()->flash('error', "Erreur lors de l'envoi de l'alerte");
-        }
+        if(isset($pdf)){$pdf->move($destinationPath, $input['file']);}
+        session()->flash('success', 'Alerte(s) envoyée(s)');
         return redirect()->route('alertes.index');
     }
 

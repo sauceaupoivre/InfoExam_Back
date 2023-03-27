@@ -16,8 +16,8 @@ $(document).ready(function(){
             $(".input-manuscrit").hide();
         }
     });
-
-    $("#date-alerte").on('input', function(event){
+/*
+    $("#rienrien").on('input', function(event){
         event.preventDefault();
         var url = "http://localhost/InfoExam_Back/public/api/date/"+$("#date-alerte").val();
         $("#epreuves option").remove();
@@ -44,5 +44,5 @@ $(document).ready(function(){
             error: function(response) {
             }
         });
-    });
+    });*/
 });

@@ -93,7 +93,9 @@
                             </td>
                         </tr>
                         @empty
-                        <p class="text-muted">Pas de salles</p>
+                        <tr>
+                            <td colspan="3" class="text-muted">Pas de salles</td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>

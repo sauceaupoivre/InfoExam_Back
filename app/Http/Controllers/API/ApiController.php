@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Examen;
 use App\Models\Salle;
 use DateTime;
+use Illuminate\Http\JsonResponse;
 
 class ApiController extends Controller
 {
@@ -42,35 +43,48 @@ class ApiController extends Controller
             //throw $th;
         }
     }
-    public function allSalles()
+    public function sallesBydate($date)
     {
-        try {
-            $salles = Salle::all();
-            return response()->json($salles);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        $cartouchesByDate = Examen::where('date','LIKE','%'.$date.'%')->get();
+        $salles = $cartouchesByDate->load('salle')->pluck('salle')->unique();
+        return response()->json($salles);
+    }
+    public function formationsBydate($date)
+    {
+        $cartouchesByDate = Examen::where('date','LIKE','%'.$date.'%')->get();
+        $formations = $cartouchesByDate->load('formation')->pluck('formation')->unique();
+        return response()->json($formations);
+    }
+    public function epreuvesBydate($date)
+    {
+        $cartouchesByDate = Examen::where('date','LIKE','%'.$date.'%')->get();
+        $epreuves = $cartouchesByDate->load('epreuve')->pluck('epreuve')->unique();
+        return response()->json($epreuves);
     }
 
-    public function examens()
+    public function examen($date, $salle_id, $formation_id, $epreuve_id)
     {
-    try
-    {
-        $examens = Examen::all();
-        return response()->json($examens);
-    }
-    catch(\Throwable $th)
-    {
-        //throw $th;
-    }
-    }
-    public function examen(Request $request)
-    {
-        $examen = Examen::Where("salle_id","=",$request->salle)
-                            ->where("date","=",$request->date)
-                            ->where("formation_id","=",$request->formation)
-                            ->where("epreuve_id","=",$request->epreuve)
+        $examen = Examen::Where("date",'LIKE','%'.$date.'%')
+                            ->where("salle_id",$salle_id)
+                            ->where("formation_id",$formation_id)
+                            ->where("epreuve_id",$epreuve_id)
                             ->first();
         return response()->json($examen);
+    }
+
+    /* PUT REQUESTS */
+    public function updateRepere(Request $request, $id){
+        $cartouche = Examen::find($id);
+        $cartouche->repere = $request->get('repere');
+        if($cartouche->save()){
+            return new JsonResponse($cartouche, 200);
+        }
+    }
+    public function updateComment(Request $request, $id){
+        $cartouche = Examen::find($id);
+        $cartouche->commentaire = $request->get('commentaire');
+        if($cartouche->save()){
+            return new JsonResponse($cartouche, 200);
+        }
     }
 }
