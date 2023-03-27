@@ -106,4 +106,11 @@ class FormationController extends Controller
             return redirect()->route('formations.index')->with('error', 'Cette formation est utilisée par une épreuve');
         }
     }
+
+    public function formationsSearch($nom)
+    {
+        $formations = Formation::where("nom","=".$nom)-get();
+        return response()->json($nom);
+    }
+
 }

@@ -4,13 +4,19 @@
 @section('content')
 <section class="Section1">
     <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-top: 2.5vh;">Créer une formation </button>
+        <div class="Section1DivBtn">
+            <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#exampleModal"style=" margin-top: 5vh;">Créer une formation<i class="bi bi-plus-square"></i></button>
+            <form action="" method="post">
+                <input type="text" class="form-control" id="recherche" name="recherche" pattern="[A-Za-z]{1,}.*" placeholder ="Recherche">
+                <button type="submit" class="btn btn-primary" id="chercher">Rechercher<i class="bi bi-search""></i></button>
+            </form>
+        </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Créer une formation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-plus-square"></i></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="{{route('formations.create')}}">
@@ -22,7 +28,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Serie : (Optionnel)</label>
-                        <input type="text" class="form-control" id="message" rows="3" name="numeros" value="" pattern="[A-Za-z]{3,}.*" placeholder ="Minimum 3 caractères">
+                        <input type="text" class="form-control" id="message" rows="3" name="numeros" value="" pattern="[A-Za-z]{1,}.*" placeholder ="Minimum 1 caractères">
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Academie : </label>
@@ -49,7 +55,7 @@
                 <th scope="col">Supprimer</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody">
                 @foreach ($formations as $lignes)
                 <tr class="Section1TableLine">
                     <td>{{$lignes->nom}}</td>
@@ -73,7 +79,7 @@
                                     </div>
                                     <div class="mb-3">
                                       <label for="message" class="form-label">Serie : </label>
-                                      <input type="text" class="form-control" id="message" rows="3" name="numeros" value="{{ isset($lignes->serie) ? $lignes->serie : 'Optionnel' }}" pattern="[A-Za-z]{3,}.*" placeholder ="Minimum 3 caractères">
+                                      <input type="text" class="form-control" id="message" rows="3" name="numeros" value="{{ isset($lignes->serie) ? $lignes->serie : 'Optionnel' }}" pattern="[A-Za-z]{1,}.*" placeholder ="Minimum 1 caractères">
                                     </div>
                                     <div class="mb-3">
                                         <label for="message" class="form-label">Académie : </label>

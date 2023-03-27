@@ -138,6 +138,16 @@ class EpreuveController extends Controller
             session()->flash('success', 'Épreuve supprimée');
             return redirect()->route('epreuves.index');
         }
+    }
+    public function epreuveFormations($id)
+    {
+        $formations = Epreuve::find($id)->formations;
+        return response()->json($formations);
+    }
 
+    public function epreuvesSearch($matiere)
+    {
+        $epreuves = Epreuve::Where('matiere',"=".$matiere)->get();
+        return response()->json($epreuves);
     }
 }
