@@ -24,8 +24,8 @@ return new class extends Migration
 
             $table->text('description')->nullable();
 
-            $table->dateTime('duree');
-            $table->dateTime('loge');
+            $table->time('duree')->nullable();
+            $table->dateTime('loge')->nullable();
 
         });
     }
