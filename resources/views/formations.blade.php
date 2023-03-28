@@ -5,9 +5,9 @@
 @if (!isset($formationsSecond))
 <section class="Section1">
     <div>
-        <div class="Section1DivBtn">
-            <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#exampleModal"style=" margin-top: 5vh;">Créer une formation<i class="bi bi-plus-square" style="padding-left: 0.5vw;"></i></button>
-            <form action="{{route("formationsSearch")}}" method="post">
+        <div class="Section1DivBtn" class="mt-4">
+            <button type="button" class="btn btn-primary create mb-2 mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Créer une formation<i class="bi bi-plus-square" style="padding-left: 0.5vw;"></i></button>
+            <form action="{{route("formationsSearch")}}"  method="post" class="mb-2 mt-4">
                 @csrf
                 <input type="text" class="form-control" id="recherche" name="recherche" pattern="[A-Za-z]{1,}.*" placeholder ="Recherche">
                 <button type="submit" class="btn btn-primary" id="chercher">Rechercher<i class="bi bi-search"></i></button>
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    <br>
+
 <div class="card ">
     <div class="card-header card-header-blue">
         <h4 class="text-center mb-0 text-white">LISTE DES FORMATIONS</h4>

@@ -146,11 +146,11 @@
 </div>
 <div class="pt-4 pb-4">
     <div class="Section1DivBtn">
-        <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#addepreuve" style="margin-top: 5vh;">Créer un examen <i class="bi bi-plus-square" style="padding-left: 0.5vw;"></i></button>
-        <form action="{{route("examensSearch")}}" method="post" style="margin-bottom: 5vh;">
+        <button type="button" class="btn btn-primary create mb-2" data-bs-toggle="modal" data-bs-target="#addepreuve">Créer un examen <i class="bi bi-plus-square"></i></button>
+        <form action="{{route("examensSearch")}}" method="post" class="mb-2">
             @csrf
             <input type="text" class="form-control" id="recherche" name="recherche" pattern="[A-Za-z]{1,}.*" placeholder ="Recherche">
-            <button type="submit" class="btn btn-primary" id="chercher">Rechercher<i class="bi bi-search"></i></button>
+            <button type="submit" class="btn btn-primary" id="chercher">Rechercher&nbsp;<i class="bi bi-search"></i></button>
         </form>
     </div>
     <div class="card ">
