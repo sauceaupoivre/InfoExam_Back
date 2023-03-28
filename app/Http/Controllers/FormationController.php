@@ -107,10 +107,22 @@ class FormationController extends Controller
         }
     }
 
-    public function formationsSearch($nom)
+    public function formationsSearch(Request $request)
     {
-        $formations = Formation::where("nom","=".$nom)-get();
-        return response()->json($nom);
-    }
+        $formations = Formation::all();
+        $formationsSecond = [];
+        foreach($formations as $ligne)
+        {
+            if($lignes->SIO == $request->recherche )
+            {
+                array_push($formationsSecond, $lignes);
+            }
+            elseif($lignes->academie == $request->recherche)
+            {
+                array_push($formationsSecond, $lignes);
+            }
+        }
 
+        return view("formations",comapct("formationsSecond"));
+    }
 }
