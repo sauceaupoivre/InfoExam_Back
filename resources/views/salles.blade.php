@@ -36,7 +36,7 @@
     <div class="pt-4 pb-4">
 
         <!-- Trigger AddModal salle -->
-        <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#addepreuve">
+        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addepreuve">
             Ajouter une salle <i class="bi bi-plus-square"></i>
         </button>
 

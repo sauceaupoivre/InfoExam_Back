@@ -74,12 +74,12 @@
         <div class="d-flex align-items-center justify-content-between">
             <!-- Trigger AddModal -->
             <div>
-                <button type="button" class="btn btn-primary ms-4 mb-2" data-bs-toggle="modal" data-bs-target="#addepreuve">
+                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addepreuve">
                     Ajouter une épreuve <i class="bi bi-plus-square"></i>
                 </button>
             </div>
             <!-- Search bar -->
-            <div class="input-group mb-2 w-50 me-4">
+            <div class="input-group mb-2 w-50 ">
                 <span class="input-group-text" id="Recherche">Recherche</span>
                 <input wire:model.debounce.400ms="search" type="text" class="form-control" placeholder="Matière/Epreuve/Examen...">
             </div>
