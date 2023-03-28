@@ -96,19 +96,6 @@
                     </div>
                     <hr>
                     <div class="input-group mb-2">
-                        <span class="input-group-text">Repère : </span>
-                        <input type="text" class="form-control" name="repere" pattern="[A-Za-z]{6,}.*" placeholder="Minimum 6 caractères" required>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" style="resize: none; height: 10vh;" rows="3" name="commmentaire" pattern="[A-Za-z]{6,}.*" required></textarea>
-                        <label for="exampleFormControlTextarea1">Commentaire</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" style="resize: none;height: 10vh;" rows="3" name="regle" pattern="[A-Za-z]{6,}.*" required></textarea>
-                        <label for="exampleFormControlTextarea1">règle</label>
-                    </div>
-                    <hr>
-                    <div class="input-group mb-2">
                         <span class="input-group-text">Choisir la salle : </span>
                         <select class="form-select" name="salle" aria-label="Default select example" required>
                             <option value="" disabled selected hidden>Salles</option>
@@ -138,10 +125,6 @@
                     <div class="input-group">
                         <span class="input-group-text">Choisir heure début : </span>
                         <input class="form-control" id="date" type="time" name="hd" required>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Choisir heure fin : </span>
-                        <input class="form-control" id="date" type="time" name="hf" required>
                     </div>
                     <hr>
                     <div class="form-check">
@@ -343,10 +326,6 @@
                                             <span class="input-group-text">Choisir heure début : </span>
                                             <input class="form-control" id="dateModif" type="time" name="hd" value="{{$e->debut}}"required>
                                         </div>
-                                        <div class="input-group">
-                                            <span class="input-group-text">Choisir heure fin : </span>
-                                            <input class="form-control" id="dateModif" type="time" name="hf" value="{{$e->fin}}" required>
-                                        </div>
                                         <hr>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="calculatrice" value="1" id="CheckCalculatriceModif" @if($e->calculatrice == 1) checked="checked" @endif required>
@@ -398,19 +377,6 @@
                         </div>
                         <hr>
                         <div class="input-group mb-2">
-                            <span class="input-group-text">Repère : </span>
-                            <input type="text" class="form-control" name="repere" pattern="[A-Za-z]{6,}.*" placeholder="Minimum 6 caractères" required>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <textarea class="form-control" id="exampleFormControlTextarea1Search" style="resize: none; height: 10vh;" rows="3" name="commmentaire" pattern="[A-Za-z]{6,}.*" required></textarea>
-                            <label for="exampleFormControlTextarea1Search">Commentaire</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <textarea class="form-control" id="exampleFormControlTextarea1Search" style="resize: none;height: 10vh;" rows="3" name="regle" pattern="[A-Za-z]{6,}.*" required></textarea>
-                            <label for="exampleFormControlTextarea1Search">règle</label>
-                        </div>
-                        <hr>
-                        <div class="input-group mb-2">
                             <span class="input-group-text">Choisir la salle : </span>
                             <select class="form-select" name="salle" aria-label="Default select example" required>
                                 <option value="" disabled selected hidden>Salles</option>
@@ -440,10 +406,6 @@
                         <div class="input-group">
                             <span class="input-group-text">Choisir heure début : </span>
                             <input class="form-control" id="dateSearch" type="time" name="hd" required>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text">Choisir heure fin : </span>
-                            <input class="form-control" id="dateSearch" type="time" name="hf" required>
                         </div>
                         <hr>
                         <div class="form-check">
@@ -644,10 +606,6 @@
                                             <div class="input-group">
                                                 <span class="input-group-text">Choisir heure début : </span>
                                                 <input class="form-control" id="dateModifSearch" type="time" name="hd" value="{{$lignes->debut}}"required>
-                                            </div>
-                                            <div class="input-group">
-                                                <span class="input-group-text">Choisir heure fin : </span>
-                                                <input class="form-control" id="dateModifSearch" type="time" name="hf" value="{{$lignes->fin}}" required>
                                             </div>
                                             <hr>
                                             <div class="form-check">

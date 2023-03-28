@@ -43,6 +43,7 @@ class ExamenController extends Controller
      */
     public function store(Request $request)
     {
+        $epreuve = Epreuve::find($request->epreuve);
         $examen = new Examen;
         $examen->estdematerialise = $request->estdematerialise;
         $examen->repere = $request->repere;
@@ -53,8 +54,12 @@ class ExamenController extends Controller
         $examen->formation_id = $request->formation;
         $date = new DateTime($request->input('date'));
         $examen->date = $date->format('Y-m-d');
-        $examen->debut = DateTime::createFromFormat("H:i", $request->hd);
-        $examen->fin = DateTime::createFromFormat("H:i", $request->hf);
+        $examen->debut=$request->hd;
+
+        $debut = Carbon::createFromFormat('H:i', $examen->debut);
+        $fin = Carbon::createFromFormat('H:i:s', $epreuve->duree);
+        $examen->fin = $debut->addMinutes($fin->minute)->addHours($fin->hour);
+
         $examen->calculatrice = $request->calculatrice;
         $examen->dictionnaire =$request->dictionnaire;
         $examen->save();
@@ -152,8 +157,18 @@ class ExamenController extends Controller
                 array_push($examensSearch, $lignes);
             }
         }
-
         return view("examens",compact("examensSearch","epreuves","formations","salles"));
+    }
 
+    public function epreuveFormations($id)
+    {
+        $formations = Epreuve::find($id)->formations;
+        return response()->json($formations);
+    }
+
+    public function epreuvesSearch($matiere)
+    {
+        $epreuves = Epreuve::Where('matiere',"=".$matiere)->get();
+        return response()->json($epreuves);
     }
 }
