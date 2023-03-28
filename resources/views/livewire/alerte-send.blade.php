@@ -17,7 +17,7 @@
                         <option value="" disabled selected hidden>Choisir une salle</option>
                         @if ($this->cartouches != null)
                             @foreach ($this->cartouches as $cartouche)
-                            <option value="{{$cartouche->salle->id}}">Salle : {{$cartouche->salle->nom}}</option>
+                            <option value="{{$cartouche->id}}">Salle : {{$cartouche->nom}}</option>
                             @endforeach
                         @endif
                     </select>

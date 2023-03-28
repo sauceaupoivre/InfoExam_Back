@@ -77,7 +77,7 @@
             <!-- Search bar -->
             <div class="input-group mb-2 w-50 me-4">
                 <span class="input-group-text" id="Recherche">Recherche</span>
-                <input wire:model.debounce.400ms="search" type="text" class="form-control" placeholder="Matière...">
+                <input wire:model.debounce.400ms="search" type="text" class="form-control" placeholder="Matière/Epreuve/Examen...">
             </div>
         </div>
         <div class="card ">
@@ -89,11 +89,11 @@
                 <table class="table text-center">
                     <thead>
                     <tr>
-                        <th scope="col">Examen/Concours</th>
-                        <th scope="col">Épreuve</th>
+                        <th class="sort-th" wire:click="sortBy('examen_concours')" scope="col">Examen/Concours <i class="bi bi-arrow-down-up"></i></th>
+                        <th class="sort-th" wire:click="sortBy('epreuve')" scope="col">Épreuve <i class="bi bi-arrow-down-up"></i></th>
                         <th class="sort-th" wire:click="sortBy('matiere')" scope="col">Matière <i class="bi bi-arrow-down-up"></i></th>
                         <th class="sort-th" wire:click="sortBy('loge')" scope="col">Mise en loge <i class="bi bi-arrow-down-up"></i></th>
-                        <th class="sort-th" wire:click="sortBy('description')" scope="col">Description <i class="bi bi-arrow-down-up"></i></th>
+                        <th scope="col">Description</th>
                         <th scope="col">Formations</th>
                         <th scope="col">Modifier/Supprimer</th>
                     </th>

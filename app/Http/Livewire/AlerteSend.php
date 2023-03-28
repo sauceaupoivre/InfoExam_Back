@@ -13,7 +13,10 @@ class AlerteSend extends Component
 
     public function updated(){
         if($this->date != null){
-            $this->cartouches = Examen::where('date','like','%'.$this->date.'%')->get();
+            $cartouchesByDate = Examen::where('date','LIKE','%'.$this->date.'%')->get();
+
+            $this->cartouches = $cartouchesByDate->load('salle')->pluck('salle')->unique();
+
         }
     }
 

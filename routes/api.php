@@ -19,6 +19,8 @@ use App\Http\Controllers\API\ApiController;
 Route::get('/cartouches/all', [ApiController::class , 'allCartouches'])->name("allCartouches");
 Route::get('/cartouches/{id}', [ApiController::class , 'cartouche'])->name("cartouche");
 
+Route::get('/cartouches/alertes/{id}', [ApiController::class , 'getAlertes'])->name("getAlertes");
+
 Route::get('/cartouches/date/{date}', [ApiController::class , 'cartouchesByDate'])->name("cartouchesByDate");
 Route::get('/salles/date/{date}', [ApiController::class , 'sallesBydate'])->name("sallesBydate");
 Route::get('/formations/date/{date}', [ApiController::class , 'formationsBydate'])->name("formationsBydate");
