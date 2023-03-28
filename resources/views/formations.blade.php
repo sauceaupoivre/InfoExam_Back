@@ -10,7 +10,7 @@
             <form action="{{route("formationsSearch")}}" method="post">
                 @csrf
                 <input type="text" class="form-control" id="recherche" name="recherche" pattern="[A-Za-z]{1,}.*" placeholder ="Recherche">
-                <button type="submit" class="btn btn-primary" id="chercher">Rechercher<i class="bi bi-search""></i></button>
+                <button type="submit" class="btn btn-primary" id="chercher">Rechercher<i class="bi bi-search"></i></button>
             </form>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -37,7 +37,7 @@ class EpreuveTable extends Component
     {
         $this->formations = Formation::all();
         return view('livewire.epreuve-table',[
-            'epreuves' => Epreuve::where('matiere','Like','%'.$this->search.'%')->orderBy($this->sort, $this->sortDirection)->paginate(10)
+            'epreuves' => Epreuve::where('matiere','Like','%'.$this->search.'%')->orWhere('examen_concours','Like','%'.$this->search.'%')->orWhere('epreuve','Like','%'.$this->search.'%')->orderBy($this->sort, $this->sortDirection)->paginate(10)
         ]);
     }
 

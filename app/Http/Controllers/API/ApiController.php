@@ -61,6 +61,11 @@ class ApiController extends Controller
         $epreuves = $cartouchesByDate->load('epreuve')->pluck('epreuve')->unique();
         return response()->json($epreuves);
     }
+    public function getAlertes($id){
+        $examen = Examen::find($id);
+        $alerts = $examen->alertes;
+        return response()->json($alerts);
+    }
 
     public function examen($date, $salle_id, $formation_id, $epreuve_id)
     {
