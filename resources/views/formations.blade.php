@@ -49,7 +49,7 @@
 
 <div class="card ">
     <div class="card-header card-header-blue">
-        <h4 class="text-center mb-0 text-white">LISTE DES EXAMENS</h4>
+        <h4 class="text-center mb-0 text-white">LISTE DES FORMATIONS</h4>
     </div>
     <div class="card-body">
         <table class="table text-center">
