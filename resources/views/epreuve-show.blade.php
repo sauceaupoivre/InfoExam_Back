@@ -42,6 +42,10 @@
                 <hr>
 
                 <div class="input-group mb-2">
+                    <span class="input-group-text">Durée : </span>
+                    <input type="time" id="duree" name="duree" value="04:00" class="form-control" min="00:00" max="24:00" required>
+                </div>
+                <div class="input-group mb-2">
                     <span class="input-group-text">Mise en loge : </span>
                     <input type="time" id="loge" name="loge" value="02:00" class="form-control" min="00:00" max="24:00" required>
                 </div>

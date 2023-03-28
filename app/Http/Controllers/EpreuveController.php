@@ -52,6 +52,7 @@ class EpreuveController extends Controller
             $epreuve->matiere = $request->matiere;
         }
         $epreuve->description = $request->description;
+        $epreuve->duree = DateTime::createFromFormat("H:i", $request->duree);
         $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
         if($epreuve->save()){
             if(is_array($request->formations)){
@@ -111,6 +112,7 @@ class EpreuveController extends Controller
         {
             $epreuve->matiere = $request->matiere;
         }
+        $epreuve->duree = DateTime::createFromFormat("H:i", $request->duree);
         $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
 
         $epreuve->formations()->sync($request->formations);

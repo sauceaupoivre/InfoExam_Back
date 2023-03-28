@@ -48,6 +48,10 @@
 
                         <!-- Heures -->
                         <div class="input-group mb-2">
+                            <span class="input-group-text">Durée : </span>
+                            <input type="time" id="duree" name="duree" value="04:00" class="form-control" min="00:00" max="24:00" required>
+                        </div>
+                        <div class="input-group mb-2">
                             <span class="input-group-text">Mise en loge : </span>
                             <input type="time" id="loge" name="loge" value="02:00" class="form-control" min="00:00" max="24:00" required>
                         </div>
@@ -93,6 +97,7 @@
                         <th class="sort-th" wire:click="sortBy('epreuve')" scope="col">Épreuve <i class="bi bi-arrow-down-up"></i></th>
                         <th class="sort-th" wire:click="sortBy('matiere')" scope="col">Matière <i class="bi bi-arrow-down-up"></i></th>
                         <th class="sort-th" wire:click="sortBy('loge')" scope="col">Mise en loge <i class="bi bi-arrow-down-up"></i></th>
+                        <th scope="col">Durée</th>
                         <th scope="col">Description</th>
                         <th scope="col">Formations</th>
                         <th scope="col">Modifier/Supprimer</th>
@@ -129,6 +134,7 @@
                             <td>{{$e->epreuve}}</td>
                             <td>{{$e->matiere}}</td>
                             <td>{{date("H",strtotime($e->loge))."h".date("i",strtotime($e->loge))}}</td>
+                            <td>{{date("H",strtotime($e->duree))."h".date("i",strtotime($e->duree))}}</td>
                             <td>
                                 <small class="text-muted">
                                     @if ($e->description == '')
