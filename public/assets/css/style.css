@@ -118,20 +118,61 @@ td
 }
 .btn-examen
 {
-    --bs-btn-bg:#ee6da1 !important;
-    --bs-btn-border-color:#ca6990 !important;
-    --bs-btn-hover-bg: #f87aac !important;
-    --bs-btn-hover-border-color:#ca6990 !important;
-    --bs-btn-active-bg:#f87aac !important;
-    --bs-btn-active-border-color:#ca6990 !important;
-    --bs-btn-hover-color:#000 !important;
+    --bs-btn-bg:rgb(255,255,255) !important;
+    --bs-btn-border-color:rgb(0,0,0) !important;
+    --bs-btn-hover-bg:rgb(0, 0, 0) !important;
+    --bs-btn-hover-border-color:rgb(0, 0, 0) !important;
+    --bs-btn-active-bg:rgb(255,255,255) !important;
+    --bs-btn-active-border-color:rgb(0, 0, 0) !important;
     color: black;
+    transition: 1s;
+}
+.btn-recherche
+{
+    --bs-btn-bg:rgb(26,112,178) !important;
+    --bs-btn-border-color:rgb(33, 104, 158) !important;
+    --bs-btn-hover-bg:rgb(9, 95, 161) !important;
+    --bs-btn-hover-border-color:rgb(33, 104, 158) !important;
+    --bs-btn-active-bg:rgb(26,112,178) !important;
+    --bs-btn-active-border-color:rgb(33, 104, 158) !important;
 }
 .card-header-blue
 {
     background-color: rgb(9,161,219) !important;
 }
-
+.Section1DivBtn
+{
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.Section1DivBtn .create
+{
+    height: 5vh;
+}
+.Section1DivBtn form
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.Section1DivBtn form input
+{
+    margin-top: 5vh;
+    height: 5vh;
+    width: 15vw;
+}
+.Section1DivBtn form button
+{
+    margin-top: 5vh;
+    height: 5vh;
+    width: 10vw;
+}
+.Section1DivBtn form button i
+{
+    padding-left: 0.5vw;
+}
 @media only screen and (max-width: 992px)
 {
     nav form

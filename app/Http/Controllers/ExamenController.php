@@ -8,6 +8,7 @@ use App\Models\Salle;
 use App\Models\Formation;
 use Illuminate\Http\Request;
 use DateTime;
+use Carbon\Carbon;
 
 class ExamenController extends Controller
 {
@@ -18,10 +19,10 @@ class ExamenController extends Controller
      */
     public function index()
     {
-        $examens = Examen::paginate(5);
-        $salles = Salle::all();
-        $formations = Formation::all();
-        return view('examens',compact('examens','salles','formations'));
+        $examens = Examen::all();
+        $salles = Salle::All();
+        $epreuves = Epreuve::All();
+        return view("examens",compact("examens","salles","epreuves"));
     }
 
     /**
@@ -42,40 +43,22 @@ class ExamenController extends Controller
      */
     public function store(Request $request)
     {
-        $epreuve = new Epreuve;
-        $epreuve->examen_concours = $request->examen_concours;
-        $epreuve->epreuve = $request->epreuve;
-        $epreuve->session = $request->session;
-        if(isset($request->matiere))
-        {
-            $epreuve->matiere = $request->matiere;
-        }
-        $epreuve->debut = DateTime::createFromFormat("H:i", $request->debut);
-        $epreuve->fin = DateTime::createFromFormat("H:i", $request->fin);
-        $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
-        if($epreuve->save()){
-            $examen = new Examen;
-            $examen->estdematerialise = $request->estdematerialise;
-            if(isset($request->calculatrice))
-            {
-                $examen->calculatrice = $request->calculatrice;
-            }
-            if(isset($request->dictionnaire))
-            {
-                $examen->dictionnaire = $request->dictionnaire;
-            }
-            $examen->date = $request->date;
-            $examen->salle_id = $request->salle;
-            $examen->formation_id = $request->formation;
-            $examen->epreuve_id = $epreuve->id;
-            if($examen->save()){
-                session()->flash('success', 'Épreuve créée');
-                return redirect()->route('epreuves.index');
-            }
-        }
-        else{
-            $epreuve->delete();
-        }
+        $examen = new Examen;
+        $examen->estdematerialise = $request->estdematerialise;
+        $examen->repere = $request->repere;
+        $examen->commentaire = $request->commmentaire;
+        $examen->regle = $request->regle;
+        $examen->salle_id=$request->salle;
+        $examen->epreuve_id = $request->epreuve;
+        $examen->formation_id = $request->formation;
+        $date = new DateTime($request->input('date'));
+        $examen->date = $date->format('Y-m-d');
+        $examen->debut = DateTime::createFromFormat("H:i", $request->hd);
+        $examen->fin = DateTime::createFromFormat("H:i", $request->hf);
+        $examen->calculatrice = $request->calculatrice;
+        $examen->dictionnaire =$request->dictionnaire;
+        $examen->save();
+        return redirect()->route('examens.index')->with('success', 'Examens créé avec succès.');
     }
 
     /**
@@ -109,38 +92,32 @@ class ExamenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$examen = Examen::find($id);
-        $epreuve = Epreuve::find($examen->epreuve->id);
-
-        $epreuve->examen_concours = $request->examen_concours;
-        $epreuve->epreuve = $request->epreuve;
-        $epreuve->session = $request->session;
-        if(isset($request->matiere))
+        $examen = Examen::find($id);
+        $examen->estdematerialise = $request->estdematerialise;
+        $examen->repere = $request->repere;
+        $examen->commentaire = $request->commmentaire;
+        $examen->regle = $request->regle;
+        if($request->salle == !null)
         {
-            $epreuve->matiere = $request->matiere;
+            $examen->salle_id=$request->salle;
         }
-        $epreuve->debut = DateTime::createFromFormat("H:i", $request->debut);
-        $epreuve->fin = DateTime::createFromFormat("H:i", $request->fin);
-        $epreuve->loge = DateTime::createFromFormat("H:i", $request->loge);
-
-        if($epreuve->save()){
-            $examen->estdematerialise = $request->estdematerialise;
-            if(isset($request->calculatrice))
-            {
-                $examen->calculatrice = $request->calculatrice;
-            }
-            if(isset($request->dictionnaire))
-            {
-                $examen->dictionnaire = $request->dictionnaire;
-            }
-            $examen->date = $request->date;
-            $examen->salle_id = $request->salle;
+        if($request->epreuve == !null)
+        {
+            $examen->epreuve_id = $request->epreuve;
+        }
+        if($request->formation == !null)
+        {
             $examen->formation_id = $request->formation;
-            if($examen->save()){
-                session()->flash('success', 'Épreuve modifiée');
-                return redirect()->route('epreuves.index');
-            }
-        }*/
+        }
+        $date = new DateTime($request->input('date'));
+        $examen->date = $date->format('Y-m-d');
+        $examen->debut = $request->hd;
+        $examen->fin = $request->hf;
+        $examen->calculatrice = $request->calculatrice;
+        $examen->dictionnaire =$request->dictionnaire;
+        $examen->save();
+        return redirect()->route('examens.index')->with('success', 'Examens modifié avec succès.');
+
     }
 
     /**
@@ -151,6 +128,32 @@ class ExamenController extends Controller
      */
     public function destroy($id)
     {
+        $examen = Examen::find($id);
+        $examen->delete();
+        return redirect()->route("examens.index")->with("success","Examen bien supprimé !");
+    }
+
+    public function examensSearch(Request $request)
+    {
+        $examens = Examen::all();
+        $epreuves = Epreuve::all();
+        $formations = Formation::all();
+        $salles = Salle::all();
+        $examensSearch = [];
+
+        foreach($examens as $lignes)
+        {
+            if($lignes->formation->nom == $request->recherche)
+            {
+                array_push($examensSearch, $lignes);
+            }
+            else if( $lignes->epreuve->matiere == $request->recherche)
+            {
+                array_push($examensSearch, $lignes);
+            }
+        }
+
+        return view("examens",compact("examensSearch","epreuves","formations","salles"));
 
     }
 }

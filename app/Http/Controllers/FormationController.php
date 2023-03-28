@@ -106,4 +106,23 @@ class FormationController extends Controller
             return redirect()->route('formations.index')->with('error', 'Cette formation est utilisée par une épreuve');
         }
     }
+
+    public function formationsSearch(Request $request)
+    {
+        $formations = Formation::all();
+        $formationsSecond = [];
+        foreach($formations as $ligne)
+        {
+            if($lignes->SIO == $request->recherche )
+            {
+                array_push($formationsSecond, $lignes);
+            }
+            elseif($lignes->academie == $request->recherche)
+            {
+                array_push($formationsSecond, $lignes);
+            }
+        }
+
+        return view("formations",comapct("formationsSecond"));
+    }
 }
