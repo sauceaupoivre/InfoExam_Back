@@ -113,16 +113,16 @@ class FormationController extends Controller
         $formationsSecond = [];
         foreach($formations as $ligne)
         {
-            if($lignes->SIO == $request->recherche )
+            if($ligne->nom == $request->recherche )
             {
-                array_push($formationsSecond, $lignes);
+                array_push($formationsSecond, $ligne);
             }
-            elseif($lignes->academie == $request->recherche)
+            elseif($ligne->academie == $request->recherche)
             {
-                array_push($formationsSecond, $lignes);
+                array_push($formationsSecond, $ligne);
             }
         }
 
-        return view("formations",comapct("formationsSecond"));
+        return view("formations",compact("formationsSecond","request"));
     }
 }

@@ -6,8 +6,9 @@
 <section class="Section1">
     <div>
         <div class="Section1DivBtn">
-            <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#exampleModal"style=" margin-top: 5vh;">Créer une formation<i class="bi bi-plus-square"></i></button>
-            <form action="" method="post">
+            <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#exampleModal"style=" margin-top: 5vh;">Créer une formation<i class="bi bi-plus-square" style="padding-left: 0.5vw;"></i></button>
+            <form action="{{route("formationsSearch")}}" method="post">
+                @csrf
                 <input type="text" class="form-control" id="recherche" name="recherche" pattern="[A-Za-z]{1,}.*" placeholder ="Recherche">
                 <button type="submit" class="btn btn-primary" id="chercher">Rechercher<i class="bi bi-search""></i></button>
             </form>
@@ -137,8 +138,9 @@
 <section class="Section1">
     <div>
         <div class="Section1DivBtn">
-            <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#exampleModal"style=" margin-top: 5vh;">Créer une formation<i class="bi bi-plus-square"></i></button>
-            <form action="" method="post">
+            <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#exampleModal"style=" margin-top: 5vh;">Créer une formation<i class="bi bi-plus-square" style="padding-left: 0.5vw;"></i></button>
+            <form action="{{route("formationsSearch")}}" method="post">
+                @csrf
                 <input type="text" class="form-control" id="recherche" name="recherche" pattern="[A-Za-z]{1,}.*" placeholder ="Recherche">
                 <button type="submit" class="btn btn-primary" id="chercher">Rechercher<i class="bi bi-search""></i></button>
             </form>
@@ -192,7 +194,7 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($formationsSecond as $lignes)
+                @forelse ($formationsSecond as $lignes)
                 <tr class="Section1TableLine">
                     <td>{{$lignes->nom}}</td>
                     <td>{{$lignes->academie}}</td>
@@ -258,7 +260,9 @@
                           </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                Aucune table ayant comme nom ou academie : "{{$request->recherche}}" n'as été trouvé
+                @endforelse
             </tbody>
         </table>
     </div>
