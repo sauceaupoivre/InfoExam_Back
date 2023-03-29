@@ -52,3 +52,4 @@ Route::post("/formations/search",[FormationController::class,"formationsSearch"]
 Route::post("/examens/search",[ExamenController::class,"examensSearch"])->name("examensSearch");
 Route::post("/epreuves/search",[EpreuveController::class,"epreuveSearch"])->name("epreuveSearch");
 Route::Post("/formations/search",[FormationController::class,"formationsSearch"])->name("formationsSearch");
+route::Post("/salles/search",[SalleController::class,"salleSearch"])->name("salleSearch");

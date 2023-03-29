@@ -3,12 +3,14 @@
 
 @section('content')
 <script>
+    console.log(myData);
     $(document).ready(function () {
         $('#epreuve').change(function () {
+           alert( $("#url").val());
             var epreuve_id = $(this).val();
             if (epreuve_id !== '') {
                 $.ajax({
-                    url: 'http://localhost/InfoExam_Back/public/epreuves/' + epreuve_id + "/formations",
+                    url: $("#url").val()+'/epreuves/' + epreuve_id + "/formations",
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
@@ -32,7 +34,7 @@
             var epreuve_id = $(this).val();
             if (epreuve_id !== '') {
                 $.ajax({
-                    url: 'http://localhost/InfoExam_Back/public/epreuves/' + epreuve_id + "/formations",
+                    url: $("#url").val()+'/epreuves/' + epreuve_id + "/formations",
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
@@ -56,7 +58,7 @@
             var epreuve_id = $(this).val();
             if (epreuve_id !== '') {
                 $.ajax({
-                    url: 'http://localhost/InfoExam_Back/public/epreuves/' + epreuve_id + "/formations",
+                    url: $("#url").val()+'/epreuves/' + epreuve_id + "/formations",
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
@@ -76,6 +78,7 @@
         });
     });
 </script>
+<input type="text" id="url" value="{{url('')}}" hidden/>
 @if (!isset($examensSearch))
 <div class="modal fade" id="addepreuve" tabindex="-1" aria-labelledby="addepreuve" aria-hidden="true">
     <div class="modal-dialog">
@@ -121,6 +124,10 @@
                     <div class="input-group">
                         <span class="input-group-text">Choisir une date : </span>
                         <input class="form-control" id="date" type="date" name="date" required>
+                        <script>
+                            var today = new Date().toISOString().split('T')[0];
+                            document.getElementById('date').setAttribute('min', today);
+                          </script>
                     </div>
                     <div class="input-group">
                         <span class="input-group-text">Choisir heure début : </span>
@@ -128,11 +135,11 @@
                     </div>
                     <hr>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="calculatrice" value="1" id="CheckCalculatrice" required>
+                        <input class="form-check-input" type="checkbox" name="calculatrice" value="1" id="CheckCalculatrice">
                         <label class="form-check-label" for="CheckCalculatrice">Calculatrice autorisée</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="dictionnaire" value="1" id="CheckDictionnaire" required>
+                        <input class="form-check-input" type="checkbox" name="dictionnaire" value="1" id="CheckDictionnaire">
                         <label class="form-check-label" for="CheckDictionnaire">Dictionnaire autorisé</label>
                     </div>
                 </div>
@@ -161,6 +168,8 @@
             <table class="table text-center">
                 <thead>
                 <tr>
+                    <th scope="col">Epreuve</th>
+                    <th scope="col">Formation</th>
                     <th scope="col">Date</th>
                     <th scope="col">Heure Début</th>
                     <th scope="col">Heure Fin</th>
@@ -169,8 +178,6 @@
                     <th scope="col">Dictionnaire</th>
                     <th scope="col">calculatrice</th>
                     <th scope="col">Format</th>
-                    <th scope="col">Formation</th>
-                    <th scope="col">Epreuve</th>
                     <th scope="col">Salle</th>
                     <th scope="col">Modifier</th>
                     <th scope="col">Supprimer</th>
@@ -200,20 +207,26 @@
                         </div>
                       </div>
                     <tr>
-                        <td>{{date("m",strtotime($e->date))."/".date("d",strtotime($e->date))}}</td>
+                        <td>{{$e->formation->nom}}</td>
+                        <td>{{$e->epreuve->matiere}}</td>
+                        <td>{{date("d",strtotime($e->date))."/".date("m",strtotime($e->date))."/".date("y",strtotime($e->date))}}</td>
                         <td>{{date("H",strtotime($e->debut))."h".date("i",strtotime($e->debut))}}</td>
                         <td>{{date("H",strtotime($e->fin))."h".date("i",strtotime($e->fin))}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalregle-{{$e->id}}">Voir Règle</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalregle-{{$e->id}}">Règle(s)</button>
                               <div class="modal fade" id="exampleModalregle-{{$e->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Règles de l'examen : {{$e->id}}</h5>
+                                      <h5 class="modal-title" id="exampleModalLabel">Règles de l'examen de l'épreuve : {{$e->epreuve->epreuve}}</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                      <p>{{$e->regle}}</p>
+                                        @if ($e->regle == null)
+                                        <p style="font-style:italic; font-size:1em;"> Aucune règle(s)</p>
+                                        @else
+                                        <p>{{$e->regle}}</p>
+                                      @endif
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -223,16 +236,20 @@
                               </div>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalcommentaire-{{$e->id}}">Voir Commentaire</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalcommentaire-{{$e->id}}">Commentaire(s)</button>
                               <div class="modal fade" id="exampleModalcommentaire-{{$e->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Commentaire de l'examen : {{$e->id}}</h5>
+                                      <h5 class="modal-title" id="exampleModalLabel">Commentaire de l'examen de l'épreuve : {{$e->epreuve->epreuve}}</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                      <p>{{$e->commentaire}}</p>
+                                        @if ($e->commentaires == null)
+                                        <p style="font-style:italic; font-size:1em;"> Aucun commentaire</p>
+                                        @else
+                                        <p>{{$e->commentaires}}</p>
+                                      @endif
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -241,23 +258,24 @@
                                 </div>
                               </div>
                         </td>
-                        <td>@if ($e->dictionnaire == 1)
+                    <td>@if ($e->dictionnaire == 1)
                             OUI
                         @else
                             NON
-                        @endif</td>
-                        <td>@if ($e->calculatrice == 1)
+                        @endif
+                    </td>
+                    <td>@if ($e->calculatrice == 1)
                             OUI
                         @else
-                            OUI
-                        @endif</td>
-                        <td>@if ($e->estdematerialise == 1)
+                            NON
+                        @endif
+                    </td>
+                    <td>@if ($e->estdematerialise == 1)
                             Dématérialisé
                         @else
                             Manuscrit
-                        @endif</td>
-                        <td>{{$e->formation->nom}}</td>
-                        <td>{{$e->epreuve->matiere}}</td>
+                        @endif
+                    </td>
                         <td>{{$e->salle->nom}}</td>
                         <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$e->id}}"><i class="bi bi-pencil-square"></i></button></td>
                         <td><button class="btn btn-danger btn-small" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$e->id}}"><i class="bi bi-x-square"></i></button></td>
@@ -283,14 +301,14 @@
                                         <hr>
                                         <div class="input-group mb-2">
                                             <span class="input-group-text">Repère : </span>
-                                            <input type="text" class="form-control"  value="{{$e->repere}}" name="repere" pattern="[A-Za-z]{6,}.*" placeholder="Minimum 6 caractères" required>
+                                            <input type="text" class="form-control"  value="{{$e->repere}}" name="repere" pattern="[A-Za-z]{6,}.*" placeholder="Minimum 6 caractères">
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <textarea class="form-control" id="exampleFormControlTextarea1Modif" style="resize: none; height: 10vh;" rows="3" name="commmentaire" pattern="[A-Za-z]{6,}.*" required>{{$e->commentaire}}</textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1Modif" style="resize: none; height: 10vh;" rows="3" name="commmentaire" pattern="[A-Za-z]{6,}.*">{{$e->commentaire}}</textarea>
                                             <label for="exampleFormControlTextarea1Modif">Commentaire</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <textarea class="form-control" id="exampleFormControlTextarea1Modif" style="resize: none;height: 10vh;" rows="3" name="regle" pattern="[A-Za-z]{6,}.*" required> {{$e->regle}}</textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1Modif" style="resize: none;height: 10vh;" rows="3" name="regle" pattern="[A-Za-z]{6,}.*"> {{$e->regle}}</textarea>
                                             <label for="exampleFormControlTextarea1Modif">règle</label>
                                         </div>
                                         <hr>
@@ -320,7 +338,11 @@
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-text">Choisir une date :</span>
-                                            <input class="form-control" id="dateModif" type="date" name="date" value="{{$e->date}}"required>
+                                            <input class="form-control" id="dateModif" type="date" name="date"  value="{{$e->date}}"required>
+                                            <script>
+                                                var todayModif = new Date().toISOString().split('T')[0];
+                                                document.getElementById('dateModif').setAttribute('min', todayModif);
+                                              </script>
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-text">Choisir heure début : </span>
@@ -328,11 +350,11 @@
                                         </div>
                                         <hr>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="calculatrice" value="1" id="CheckCalculatriceModif" @if($e->calculatrice == 1) checked="checked" @endif required>
+                                            <input class="form-check-input" type="checkbox" name="calculatrice" value="1" id="CheckCalculatriceModif" @if($e->calculatrice == 1) checked="checked" @endif>
                                             <label class="form-check-label" for="CheckCalculatriceModif">Calculatrice autorisée</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="dictionnaire" value="1" id="CheckDictionnaireModif" @if ($e->dictionnaire == 1) checked="checked" @endif required>
+                                            <input class="form-check-input" type="checkbox" name="dictionnaire" value="1" id="CheckDictionnaireModif" @if ($e->dictionnaire == 1) checked="checked" @endif>
                                             <label class="form-check-label" for="CheckDictionnaireModif">Dictionnaire autorisé</label>
                                         </div>
                                         </div>
@@ -346,7 +368,9 @@
                         </div>
                     </div>
                     @empty
-                    <p class="text-muted">Pas d'examens</p>
+                        <tr>
+                            <td colspan="13" class="text-muted">Il n'existe pas d'examen(s) : "{{$request->recherche}}"</td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
@@ -402,6 +426,10 @@
                         <div class="input-group">
                             <span class="input-group-text">Choisir une date : </span>
                             <input class="form-control" id="dateSearch" type="date" name="date" required>
+                            <script>
+                                var todaySearch = new Date().toISOString().split('T')[0];
+                                document.getElementById('dateSearch').setAttribute('min', todaySearch);
+                              </script>
                         </div>
                         <div class="input-group">
                             <span class="input-group-text">Choisir heure début : </span>
@@ -409,11 +437,11 @@
                         </div>
                         <hr>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="calculatrice" value="1" id="CheckCalculatriceSearch" required>
+                            <input class="form-check-input" type="checkbox" name="calculatrice" value="1" id="CheckCalculatriceSearch">
                             <label class="form-check-label" for="CheckCalculatriceSearch">Calculatrice autorisée</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="dictionnaire" value="1" id="CheckDictionnaireSearch" required>
+                            <input class="form-check-input" type="checkbox" name="dictionnaire" value="1" id="CheckDictionnaireSearch">
                             <label class="form-check-label" for="CheckDictionnaireSearch">Dictionnaire autorisé</label>
                         </div>
                     </div>
@@ -427,8 +455,8 @@
     </div>
     <div class="pt-4 pb-4">
         <div class="Section1DivBtn">
-            <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#addepreuveSearch" style="margin-top: 5vh;">Créer un examen <i class="bi bi-plus-square" style="padding-left: 0.5vw;"></i></button>
-            <form action="{{route("examensSearch")}}" method="post" style="margin-bottom: 5vh;">
+            <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#addepreuveSearch">Créer un examen <i class="bi bi-plus-square" style="padding-left: 0.5vw;"></i></button>
+            <form action="{{route("examensSearch")}}" method="post" style="margin-bottom: 2.5vh;">
                 @csrf
                 <input type="text" class="form-control" id="recherche" name="recherche" pattern="[A-Za-z]{1,}.*" placeholder ="Recherche">
                 <button type="submit" class="btn btn-primary" id="chercher">Rechercher<i class="bi bi-search"></i></button>
@@ -442,6 +470,8 @@
                 <table class="table text-center">
                     <thead>
                     <tr>
+                        <th scope="col">Epreuve</th>
+                        <th scope="col">Formation</th>
                         <th scope="col">Date</th>
                         <th scope="col">Heure Début</th>
                         <th scope="col">Heure Fin</th>
@@ -450,8 +480,6 @@
                         <th scope="col">Dictionnaire</th>
                         <th scope="col">calculatrice</th>
                         <th scope="col">Format</th>
-                        <th scope="col">Formation</th>
-                        <th scope="col">Epreuve</th>
                         <th scope="col">Salle</th>
                         <th scope="col">Modifier</th>
                         <th scope="col">Supprimer</th>
@@ -481,20 +509,26 @@
                             </div>
                           </div>
                         <tr>
+                            <td>{{$lignes->formation->nom}}</td>
+                            <td>{{$lignes->epreuve->matiere}}</td>
                             <td>{{date("m",strtotime($lignes->date))."/".date("d",strtotime($lignes->date))}}</td>
                             <td>{{date("H",strtotime($lignes->debut))."h".date("i",strtotime($lignes->debut))}}</td>
                             <td>{{date("H",strtotime($lignes->fin))."h".date("i",strtotime($lignes->fin))}}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalregleSearch-{{$lignes->id}}">Voir Règle</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalregleSearch-{{$lignes->id}}">Règle(s)</button>
                                   <div class="modal fade" id="exampleModalregleSearch-{{$lignes->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabelSearch">Règles de l'examen : {{$lignes->id}}</h5>
+                                          <h5 class="modal-title" id="exampleModalLabelSearch">Règles de l'examen de l'épreuve : {{$lignes->epreuve->epreuve}}</h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                          <p>{{$lignes->regle}}</p>
+                                            @if($lignes->regle == null)
+                                            <p style="font-style:italic; font-size:1em;"> Aucune règle(s)</p>
+                                            @else
+                                            <p>{{$lignes->regle}}</p>
+                                          @endif
                                         </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -504,16 +538,20 @@
                                   </div>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalcommentaireSearch-{{$lignes->id}}">Voir Commentaire</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalcommentaireSearch-{{$lignes->id}}">Commentaire(s)</button>
                                   <div class="modal fade" id="exampleModalcommentaireSearch-{{$lignes->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabelSearch">Commentaire de l'examen : {{$lignes->id}}</h5>
+                                          <h5 class="modal-title" id="exampleModalLabelSearch">Commentaire de l'examen de : {{$lignes->epreuve->epreuve}}</h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                          <p>{{$lignes->commentaire}}</p>
+                                            @if ($lignes->commentaires == null)
+                                            <p style="font-style:italic; font-size:0.1em;"> Aucun commentaire</p>
+                                            @else
+                                            <p>{{$lignes->commentaires}}</p>
+                                          @endif
                                         </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -530,15 +568,13 @@
                             <td>@if ($lignes->calculatrice == 1)
                                 OUI
                             @else
-                                OUI
+                                NOM
                             @endif</td>
                             <td>@if ($lignes->estdematerialise == 1)
                                 Dématérialisé
                             @else
                                 Manuscrit
                             @endif</td>
-                            <td>{{$lignes->formation->nom}}</td>
-                            <td>{{$lignes->epreuve->matiere}}</td>
                             <td>{{$lignes->salle->nom}}</td>
                             <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalSearch{{$lignes->id}}"><i class="bi bi-pencil-square"></i></button></td>
                             <td><button class="btn btn-danger btn-small" data-bs-toggle="modal" data-bs-target="#deleteModalSearch-{{$lignes->id}}"><i class="bi bi-x-square"></i></button></td>
@@ -564,14 +600,14 @@
                                             <hr>
                                             <div class="input-group mb-2">
                                                 <span class="input-group-text">Repère : </span>
-                                                <input type="text" class="form-control"  value="{{$lignes->repere}}" name="repere" pattern="[A-Za-z]{6,}.*" placeholder="Minimum 6 caractères" required>
+                                                <input type="text" class="form-control"  value="{{$lignes->repere}}" name="repere" pattern="[A-Za-z]{6,}.*" placeholder="Minimum 6 caractères">
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1ModifSearch" style="resize: none; height: 10vh;" rows="3" name="commmentaire" pattern="[A-Za-z]{6,}.*" required>{{$lignes->commentaire}}</textarea>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1ModifSearch" style="resize: none; height: 10vh;" rows="3" name="commmentaire" pattern="[A-Za-z]{6,}.*">{{$lignes->commentaire}}</textarea>
                                                 <label for="exampleFormControlTextarea1ModifSearch">Commentaire</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1ModifSearch" style="resize: none;height: 10vh;" rows="3" name="regle" pattern="[A-Za-z]{6,}.*" required> {{$lignes->regle}}</textarea>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1ModifSearch" style="resize: none;height: 10vh;" rows="3" name="regle" pattern="[A-Za-z]{6,}.*"> {{$lignes->regle}}</textarea>
                                                 <label for="exampleFormControlTextarea1ModifSearch">règle</label>
                                             </div>
                                             <hr>
@@ -602,6 +638,10 @@
                                             <div class="input-group">
                                                 <span class="input-group-text">Choisir une date :</span>
                                                 <input class="form-control" id="dateModifSearch" type="date" name="date" value="{{$lignes->date}}"required>
+                                                <script>
+                                                    var todaySearchModif = new Date().toISOString().split('T')[0];
+                                                    document.getElementById('dateModifSearch').setAttribute('min', todaySearchModif);
+                                                </script>
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-text">Choisir heure début : </span>
@@ -609,11 +649,11 @@
                                             </div>
                                             <hr>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="calculatrice" value="1" id="CheckCalculatriceModifSearch" @if($lignes->calculatrice == 1) @checked(true)@endif required>
+                                                <input class="form-check-input" type="checkbox" name="calculatrice" value="1" id="CheckCalculatriceModifSearch" @if($lignes->calculatrice == 1) @checked(true)@endif>
                                                 <label class="form-check-label" for="CheckCalculatriceModifSearch">Calculatrice autorisée</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="dictionnaire" value="1" id="CheckDictionnaireModifSearch" @if($lignes->dictionnaire == 1) @checked(true)@endif required>
+                                                <input class="form-check-input" type="checkbox" name="dictionnaire" value="1" id="CheckDictionnaireModifSearch" @if($lignes->dictionnaire == 1) @checked(true)@endif>
                                                 <label class="form-check-label" for="CheckDictionnaireModifSearch">Dictionnaire autorisé</label>
                                             </div>
                                             </div>
@@ -629,7 +669,9 @@
                         @endforeach
                         @forelse ($examensSearch as $examenChoose)
                         @empty
-                        <p class="text-muted">Pas d'examens</p>
+                        <tr>
+                            <td colspan="13" class="text-muted">Il n'existe pas d'examen(s) : "{{$request->recherche}}"</td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>

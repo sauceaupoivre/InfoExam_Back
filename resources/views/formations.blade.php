@@ -18,7 +18,7 @@
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Créer une formation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-plus-square"></i></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="{{route('formations.create')}}">
@@ -26,7 +26,7 @@
                     @method("GET")
                     <div class="mb-3">
                         <label for="name" class="form-label">Nom :</label>
-                        <input type="text" class="form-control" id="name" name="nom" pattern="[A-Za-z]{3,}.*" placeholder ="Minimum 3 caractères" required>
+                        <input type="text" class="form-control" id="name" name="nom"  pattern="[A-Za-z]{1,}.*" placeholder ="Minimum 3 caractères" required>
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Serie : (Optionnel)</label>
@@ -62,7 +62,7 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($formations as $lignes)
+                @forelse($formations as $lignes)
                 <tr class="Section1TableLine">
                     <td>{{$lignes->nom}}</td>
                     <td>{{$lignes->academie}}</td>
@@ -81,7 +81,7 @@
                                     @method("PUT")
                                     <div class="mb-3">
                                       <label for="name" class="form-label">Nom :</label>
-                                      <input type="text" class="form-control" id="name" name="nom" value="{{$lignes->nom}}" pattern="[A-Za-z]{3,}.*" placeholder ="Minimum 3 caractères" required>
+                                      <input type="text" class="form-control" id="name" name="nom" value="{{$lignes->nom}}"  pattern="[A-Za-z]{1,}.*" placeholder ="Minimum 3 caractères" required>
                                     </div>
                                     <div class="mb-3">
                                       <label for="message" class="form-label">Serie : </label>
@@ -106,7 +106,7 @@
                             <i class="bi bi-x-square"></i>
                         </button>
                     </td>
-                <tr>
+                </tr>
                     <div class="modal fade" id="deleteModal-{{$lignes->id}}" tabindex="-1" >
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -128,7 +128,11 @@
                           </div>
                         </div>
                     </div>
-                @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="4" class="text-muted">Il n'existe pas de formation(s) : "{{$request->recherche}}"</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -150,7 +154,7 @@
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Créer une formation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-plus-square"></i></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="{{route('formations.create')}}">
@@ -213,7 +217,7 @@
                                     @method("PUT")
                                     <div class="mb-3">
                                       <label for="name" class="form-label">Nom :</label>
-                                      <input type="text" class="form-control" id="name" name="nom" value="{{$lignes->nom}}" pattern="[A-Za-z]{3,}.*" placeholder ="Minimum 3 caractères" required>
+                                      <input type="text" class="form-control" id="name" name="nom" value="{{$lignes->nom}}" pattern="[A-Za-z]{1,}.*" placeholder ="Minimum 3 caractères" required>
                                     </div>
                                     <div class="mb-3">
                                       <label for="message" class="form-label">Serie : </label>
@@ -238,7 +242,7 @@
                             <i class="bi bi-x-square"></i>
                         </button>
                     </td>
-                <tr>
+                </tr>
                     <div class="modal fade" id="deleteModal-{{$lignes->id}}" tabindex="-1" >
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -260,8 +264,10 @@
                           </div>
                         </div>
                     </div>
-                @empty
-                Aucune table ayant comme nom ou academie : "{{$request->recherche}}" n'as été trouvé
+                    @empty
+                    <tr>
+                        <td colspan="4"class="text-muted">Il n'existe pas de formation(s) : "{{$request->recherche}}"</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>

@@ -43,7 +43,7 @@
                                 <a class="{{ request()->routeIs('epreuves.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('epreuves.index')}}"><button type="button" class="btn btn-light">ÉPREUVES <i class="bi bi-pen"></i></button><span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="{{ request()->routeIs('examens.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('examens.index')}}"><button type="button" class="btn btn-examen">EXAMEN <i class="bi bi-buildings"></i></button><span class="sr-only"></span></a>
+                                <a class="{{ request()->routeIs('examens.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('examens.index')}}"><button type="button" class="btn btn-examen">EXAMENS <i class="bi bi-buildings"></i></button><span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="{{ request()->routeIs('alertes.index') ? 'nav-link active' : 'nav-link'  }}" href="{{ route('alertes.index')}}"><button type="button" class="btn btn-warning">ALERTES <i class="bi bi-bell"></i></button><span class="sr-only"></span></a>

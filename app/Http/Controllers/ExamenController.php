@@ -54,14 +54,30 @@ class ExamenController extends Controller
         $examen->formation_id = $request->formation;
         $date = new DateTime($request->input('date'));
         $examen->date = $date->format('Y-m-d');
-        $examen->debut=$request->hd;
 
+        $examen->debut=$request->hd;
         $debut = Carbon::createFromFormat('H:i', $examen->debut);
         $fin = Carbon::createFromFormat('H:i:s', $epreuve->duree);
         $examen->fin = $debut->addMinutes($fin->minute)->addHours($fin->hour);
 
-        $examen->calculatrice = $request->calculatrice;
-        $examen->dictionnaire =$request->dictionnaire;
+        if($request->calculatrice == null)
+        {
+            $examen->calculatrice = 0;
+        }
+        else
+        {
+            $examen->calculatrice = $request->calculatrice;
+        }
+
+        if($request->dictionnaire == null)
+        {
+            $examen->dictionnaire = 0;
+        }
+        else
+        {
+            $examen->dictionnaire =$request->dictionnaire;
+        }
+
         $examen->save();
         return redirect()->route('examens.index')->with('success', 'Examens créé avec succès.');
     }
@@ -98,10 +114,12 @@ class ExamenController extends Controller
     public function update(Request $request, $id)
     {
         $examen = Examen::find($id);
+        $epreuve = Epreuve::find($examen->epreuve->id);
         $examen->estdematerialise = $request->estdematerialise;
         $examen->repere = $request->repere;
         $examen->commentaire = $request->commmentaire;
         $examen->regle = $request->regle;
+
         if($request->salle == !null)
         {
             $examen->salle_id=$request->salle;
@@ -114,12 +132,33 @@ class ExamenController extends Controller
         {
             $examen->formation_id = $request->formation;
         }
+
         $date = new DateTime($request->input('date'));
         $examen->date = $date->format('Y-m-d');
-        $examen->debut = $request->hd;
-        $examen->fin = $request->hf;
-        $examen->calculatrice = $request->calculatrice;
-        $examen->dictionnaire =$request->dictionnaire;
+
+        $examen->debut=$request->hd;
+        $debut = Carbon::createFromFormat('H:i:s', $examen->debut);
+        $fin = Carbon::createFromFormat('H:i:s', $epreuve->duree);
+        $examen->fin = $debut->addMinutes($fin->minute)->addHours($fin->hour);
+
+        if($request->calculatrice == null)
+        {
+            $examen->calculatrice = 0;
+        }
+        else
+        {
+            $examen->calculatrice = $request->calculatrice;
+        }
+
+        if($request->dictionnaire == null)
+        {
+            $examen->dictionnaire = 0;
+        }
+        else
+        {
+            $examen->dictionnaire =$request->dictionnaire;
+        }
+
         $examen->save();
         return redirect()->route('examens.index')->with('success', 'Examens modifié avec succès.');
 
@@ -157,11 +196,12 @@ class ExamenController extends Controller
                 array_push($examensSearch, $lignes);
             }
         }
-        return view("examens",compact("examensSearch","epreuves","formations","salles"));
+        return view("examens",compact("examensSearch","epreuves","formations","salles","request"));
     }
 
     public function epreuveFormations($id)
     {
+        $this->middleware('cors');
         $formations = Epreuve::find($id)->formations;
         return response()->json($formations);
     }

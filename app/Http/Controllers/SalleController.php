@@ -106,4 +106,18 @@ class SalleController extends Controller
             return redirect()->route('salles.index');
         }
     }
+
+    public function salleSearch(Request $request)
+    {
+        $salleall =[];
+        $salles = Salle::all();
+        foreach($salles as $ligne)
+        {
+            if($ligne->nom == $request->recherche)
+            {
+                array_push($salleall,$ligne);
+            }
+        }
+        return view("salles",compact("salleall","request"));
+    }
 }
