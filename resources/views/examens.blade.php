@@ -3,10 +3,8 @@
 
 @section('content')
 <script>
-    console.log(myData);
     $(document).ready(function () {
         $('#epreuve').change(function () {
-           alert( $("#url").val());
             var epreuve_id = $(this).val();
             if (epreuve_id !== '') {
                 $.ajax({
