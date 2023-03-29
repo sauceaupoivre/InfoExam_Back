@@ -142,8 +142,6 @@ class EpreuveController extends Controller
         try
         {
             $epreuve->delete();
-            session()->flash('success', 'Épreuve supprimée');
-            return redirect()->route('epreuves.index');
             $formation->delete();
             return redirect()->route('epreuves.index')->with('success', 'Epreuve supprimer avec succès.');
 
