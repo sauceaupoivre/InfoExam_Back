@@ -43,7 +43,7 @@
 
                 <div class="input-group mb-2">
 
-                    <span class="input-group-text">Durée : </span>
+                    <span class="input-group-text">Durée (en heure): </span>
                     <input type="time" id="duree" name="duree" value="{{date("H",strtotime($epreuve->duree)).":".date("i",strtotime($epreuve->duree))}}" class="form-control" min="00:00" max="24:00" required>
                 </div>
                 <div class="input-group mb-2">
