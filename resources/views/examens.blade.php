@@ -75,6 +75,30 @@
             }
         });
     });
+    $(document).ready(function () {
+        $('#epreuveSearch').change(function () {
+            var epreuve_id = $(this).val();
+            if (epreuve_id !== '') {
+                $.ajax({
+                    url: $("#url").val()+'/epreuves/' + epreuve_id + "/formations",
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#formationsSearch').empty();
+                        $.each(data, function (key, value) {
+                            $('#formationsSearch').append('<option value="' + value.id + '">' + value.nom + '</option>');
+                        });
+                        $('#formationsSearch').prop('disabled', false);
+                    }
+                });
+            }
+            else
+            {
+                $('#formationsSearch').empty();
+                $('#formationsSearch').prop('disabled', true);
+            }
+        });
+    });
 </script>
 <input type="text" id="url" value="{{url('')}}" hidden/>
 @if (!isset($examensSearch))
