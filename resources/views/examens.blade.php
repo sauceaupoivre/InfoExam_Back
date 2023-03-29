@@ -391,7 +391,7 @@
                     </div>
                     @empty
                         <tr>
-                            <td colspan="13" class="text-muted">Il n'existe pas d'examen(s) : "{{$request->recherche}}"</td>
+                            <td colspan="13" class="text-muted">Il n'existe pas d'examen"</td>
                         </tr>
                     @endforelse
                 </tbody>

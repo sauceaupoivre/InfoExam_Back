@@ -138,8 +138,12 @@ class EpreuveController extends Controller
     public function destroy($id)
     {
         $epreuve = Epreuve::find($id);
+        $epreuve->formations()->detach($epreuve->formations);
         try
         {
+            $epreuve->delete();
+            session()->flash('success', 'Épreuve supprimée');
+            return redirect()->route('epreuves.index');
             $formation->delete();
             return redirect()->route('epreuves.index')->with('success', 'Epreuve supprimer avec succès.');
 
@@ -148,6 +152,5 @@ class EpreuveController extends Controller
             return redirect()->route('epreuves.index')->with('error', 'Cette epreuve est utilisée par un examen');
         }
 
-
-    }
+}
 }

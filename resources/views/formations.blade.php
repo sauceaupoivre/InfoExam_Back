@@ -130,7 +130,7 @@
                     </div>
                     @empty
                     <tr>
-                        <td colspan="4" class="text-muted">Il n'existe pas de formation(s) : "{{$request->recherche}}"</td>
+                        <td colspan="4" class="text-muted">Il n'existe pas de formation(s)</td>
                     </tr>
                 @endforelse
             </tbody>
