@@ -30,6 +30,7 @@ Route::get("/examen/{date}/{salle_id}/{formation_id}/{epreuve_id}",[ApiControlle
 
 Route::put('/cartouches/repere/{id}', [ApiController::class, 'updateRepere'])->name("updateRepere");
 Route::put('/cartouches/commentaire/{id}', [ApiController::class, 'updateComment'])->name("updateComment");
+Route::put('/cartouches/alerte/done/{id}', [ApiController::class, 'updateAlert'])->name("updateAlert");
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

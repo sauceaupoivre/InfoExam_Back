@@ -5,8 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Examen;
-use App\Models\Salle;
-use DateTime;
+use App\Models\Alerte;
 use Illuminate\Http\JsonResponse;
 
 class ApiController extends Controller
@@ -90,6 +89,13 @@ class ApiController extends Controller
         $cartouche->commentaire = $request->get('commentaire');
         if($cartouche->save()){
             return new JsonResponse($cartouche, 200);
+        }
+    }
+	public function updateAlert($id){
+        $alerte = Alerte::find($id);
+        $alerte->done = 1;
+        if($alerte->save()){
+            return new JsonResponse($alerte, 200);
         }
     }
 }
