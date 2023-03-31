@@ -61,9 +61,14 @@
         </div>
 
         @section('footer')
-            <div class="footer">
-                <p class="text-muted m-1">Créée par</p>
-                <img src="{{asset("assets/logo/Qlopex.png")}}">
+            <div class="footer position-absolute bottom-0 mt-4">
+                <div class="d-flex align-items-center">
+                    <p class="text-muted m-1">CRÉÉ PAR</p>
+                    <img src="{{asset("assets/logo/Qlopex_wide.png")}}">
+                </div>
+                <div class="d-flex">
+                    <a href="{{ route('APIDocs')}}" class="text-muted me-1" style="text-decoration: none">API | DOCS</a>
+                </div>
             </div>
         @show
 

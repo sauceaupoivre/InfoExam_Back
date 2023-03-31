@@ -82,7 +82,7 @@
         </div>
 
         @section('footer')
-            <div class="footer mt-4">
+            <div class="footer">
                 <div class="d-flex align-items-center">
                     <p class="text-muted m-1">CRÉÉ PAR</p>
                     <img src="{{asset("assets/logo/Qlopex_wide.png")}}">
