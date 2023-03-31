@@ -143,7 +143,7 @@
                             <option value="" disabled selected hidden>Formations</option>
                           </select>
                     </div>
-                    <div class="input-group">
+                    <div class="input-group mb-2">
                         <span class="input-group-text">Choisir une date : </span>
                         <input class="form-control" id="date" type="date" name="date" required>
                         <script>
@@ -358,7 +358,7 @@
                                                 <option value="{{$e->formation->id}}" disabled selected hidden>{{$e->formation->nom}}</option>
                                               </select>
                                         </div>
-                                        <div class="input-group">
+                                        <div class="input-group mb-2">
                                             <span class="input-group-text">Choisir une date :</span>
                                             <input class="form-control" id="dateModif" type="date" name="date"  value="{{$e->date}}"required>
                                             <script>
@@ -445,7 +445,7 @@
                                 <option value="" disabled selected hidden>Formations</option>
                               </select>
                         </div>
-                        <div class="input-group">
+                        <div class="input-group mb-2">
                             <span class="input-group-text">Choisir une date : </span>
                             <input class="form-control" id="dateSearch" type="date" name="date" required>
                             <script>
@@ -657,7 +657,7 @@
                                                     <option value="{{$lignes->formation->id}}" disabled selected hidden>{{$lignes->formation->nom}}</option>
                                                   </select>
                                             </div>
-                                            <div class="input-group">
+                                            <div class="input-group mb-2">
                                                 <span class="input-group-text">Choisir une date :</span>
                                                 <input class="form-control" id="dateModifSearch" type="date" name="date" value="{{$lignes->date}}"required>
                                                 <script>

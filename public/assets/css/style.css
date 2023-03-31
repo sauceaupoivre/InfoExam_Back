@@ -147,10 +147,6 @@ td
     display: flex;
     justify-content: space-between;
 }
-.Section1DivBtn .create
-{
-    height: 5vh;
-}
 .Section1DivBtn form
 {
     display: flex;
@@ -159,7 +155,6 @@ td
 }
 .Section1DivBtn form input
 {
-    height: 5vh;
     width: 15vw;
 }
 .Section1DivBtn form button i

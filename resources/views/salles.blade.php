@@ -31,8 +31,8 @@
             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addepreuve">Ajouter une salle <i class="bi bi-plus-square"></i></button>
             <form action="{{route("salleSearch")}}" method="post">
                 @csrf
-                <input type="text" class="form-control" id="recherche" name="recherche"placeholder ="Recherche">
-                <button type="submit" class="btn btn-primary" id="chercher">Rechercher<i class="bi bi-search"></i></button>
+                <input type="text" class="form-control mb-2" id="recherche" name="recherche"placeholder ="Recherche">
+                <button type="submit" class="btn btn-primary mb-2" id="chercher">Rechercher<i class="bi bi-search"></i></button>
             </form>
         </div>
         <div class="card ">
