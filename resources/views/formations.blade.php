@@ -64,7 +64,7 @@
             <tbody>
                 @forelse($formations as $lignes)
                 <tr class="Section1TableLine">
-                    <td>{{$lignes->nom}}</td>
+                    <td>{{$lignes->nom}} {{$lignes->serie}}</td>
                     <td>{{$lignes->academie}}</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$lignes->id}}"><i class="bi bi-pencil-square"></i></button>
@@ -200,7 +200,7 @@
             <tbody>
                 @forelse ($formationsSecond as $lignes)
                 <tr class="Section1TableLine">
-                    <td>{{$lignes->nom}}</td>
+                    <td>{{$lignes->nom}} {{$lignes->serie}}</td>
                     <td>{{$lignes->academie}}</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$lignes->id}}"><i class="bi bi-pencil-square"></i></button>

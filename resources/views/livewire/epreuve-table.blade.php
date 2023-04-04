@@ -20,7 +20,7 @@
                         </div>
                         <div class="input-group mb-2">
                             <span class="input-group-text">Matière : </span>
-                            <input id="matiere" type="text" name="matiere" class="form-control" required>
+                            <input id="matiere" type="text" name="matiere" class="form-control" placeholder="Ne rien inscrire" required>
                         </div>
 
                         <h1 class="modal-title fs-5 mt-4" id="exampleModalLabel">Sélection des formations</h1>
@@ -29,7 +29,7 @@
 
                             @forelse ($formations as $formation)
                                 <div>
-                                    <label >{{$formation->nom}}</label>
+                                    <label >{{$formation->nom}} {{$formation->serie}}</label>
                                     <input type='checkbox' name='formations[]' value='{{$formation->id}}' />
                                 </div>
                             @empty
@@ -147,7 +147,7 @@
                             </td>
                             <td >
                                 @forelse ($e->formations as $formation)
-                                    <span class="badge text-bg-secondary m-1">{{$formation->nom}}</span>
+                                    <span class="badge text-bg-secondary m-1">{{$formation->nom}} {{$formation->serie}}</span>
                                 @empty
                                     <small class="text-muted">Pas de formations associées</small>
                                 @endforelse
