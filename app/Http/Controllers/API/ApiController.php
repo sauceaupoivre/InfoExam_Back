@@ -62,7 +62,7 @@ class ApiController extends Controller
     }
     public function getAlertes($id){
         $examen = Examen::find($id);
-        $alerts = $examen->alertes;
+        $alerts = $examen->alertes()->orderBy('created_at','desc')->get();
         return response()->json($alerts);
     }
 
