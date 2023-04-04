@@ -32,6 +32,9 @@ return new class extends Migration
             $table->time('debut');
             $table->time('fin');
 
+            $table->boolean('started')->default(0);
+            $table->dateTime('startTime')->nullable();
+
             $table->unsignedBigInteger('salle_id');
             $table->foreign('salle_id')->references('id')->on('salles');
 

@@ -31,6 +31,9 @@ Route::get("/examen/{date}/{salle_id}/{formation_id}/{epreuve_id}",[ApiControlle
 Route::put('/cartouches/repere/{id}', [ApiController::class, 'updateRepere'])->name("updateRepere");
 Route::put('/cartouches/commentaire/{id}', [ApiController::class, 'updateComment'])->name("updateComment");
 Route::put('/cartouches/alerte/done/{id}', [ApiController::class, 'updateAlert'])->name("updateAlert");
+Route::put('/cartouches/examen/start/{id}', [ApiController::class, 'startTime'])->name("startTime");
+Route::put('/cartouches/examen/start/stop/{id}', [ApiController::class, 'stopTime'])->name("stopTime");
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

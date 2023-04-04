@@ -98,4 +98,20 @@ class ApiController extends Controller
             return new JsonResponse($alerte, 200);
         }
     }
+    public function startTime(Request $request,$id){
+        $cartouche = Examen::find($id);
+        $cartouche->started = 1 ;
+        $cartouche->startTime = $request->get('startTime');
+        if($cartouche->save()){
+            return new JsonResponse($cartouche, 200);
+        }
+    }
+    public function stopTime($id){
+        $cartouche = Examen::find($id);
+        $cartouche->started = 0 ;
+        $cartouche->startTime = null;
+        if($cartouche->save()){
+            return new JsonResponse($cartouche, 200);
+        }
+    }
 }

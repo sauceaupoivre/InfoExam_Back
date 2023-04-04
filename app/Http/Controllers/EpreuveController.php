@@ -142,7 +142,7 @@ class EpreuveController extends Controller
         try
         {
             $epreuve->delete();
-            $formation->delete();
+            //$formation->delete();
             return redirect()->route('epreuves.index')->with('success', 'Epreuve supprimer avec succès.');
 
         } catch (\Throwable $th)
