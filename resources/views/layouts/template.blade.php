@@ -17,7 +17,6 @@
 
         <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
         <link rel="stylesheet" href="{{asset("assets/css/bootstrap.min.css")}}">
-        <link rel="stylesheet" href="{{asset("assets/js/script.js")}}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
         @livewireStyles
