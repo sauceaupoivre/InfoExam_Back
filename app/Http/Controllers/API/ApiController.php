@@ -114,4 +114,9 @@ class ApiController extends Controller
             return new JsonResponse($cartouche, 200);
         }
     }
+    public function dateNow()
+    {
+        $datenow = now();
+        return response()->json($datenow);
+    }
 }
