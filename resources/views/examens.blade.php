@@ -186,7 +186,7 @@
         <div class="card-header card-header-blue">
             <h4 class="text-center mb-0 text-white">LISTE DES EXAMENS</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body epreuve-table">
             <table class="table text-center">
                 <thead>
                 <tr>
@@ -198,7 +198,7 @@
                     <th scope="col">Règles</th>
                     <th scope="col">Commentaire</th>
                     <th scope="col">Dictionnaire</th>
-                    <th scope="col">calculatrice</th>
+                    <th scope="col">Calculatrice</th>
                     <th scope="col">Format</th>
                     <th scope="col">Salle</th>
                     <th scope="col">Modifier</th>
@@ -235,7 +235,7 @@
                         <td>{{date("H",strtotime($e->debut))."h".date("i",strtotime($e->debut))}}</td>
                         <td>{{date("H",strtotime($e->fin))."h".date("i",strtotime($e->fin))}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalregle-{{$e->id}}">Règle(s)</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalregle-{{$e->id}}">Voir</button>
                               <div class="modal fade" id="exampleModalregle-{{$e->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
@@ -258,7 +258,7 @@
                               </div>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalcommentaire-{{$e->id}}">Commentaire(s)</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalcommentaire-{{$e->id}}">Voir</button>
                               <div class="modal fade" id="exampleModalcommentaire-{{$e->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
@@ -488,7 +488,7 @@
             <div class="card-header card-header-blue">
                 <h4 class="text-center mb-0 text-white">LISTE DES EXAMENS</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body epreuve-table">
                 <table class="table text-center">
                     <thead>
                     <tr>
@@ -500,7 +500,7 @@
                         <th scope="col">Règles</th>
                         <th scope="col">Commentaire</th>
                         <th scope="col">Dictionnaire</th>
-                        <th scope="col">calculatrice</th>
+                        <th scope="col">Calculatrice</th>
                         <th scope="col">Format</th>
                         <th scope="col">Salle</th>
                         <th scope="col">Modifier</th>
@@ -537,7 +537,7 @@
                             <td>{{date("H",strtotime($lignes->debut))."h".date("i",strtotime($lignes->debut))}}</td>
                             <td>{{date("H",strtotime($lignes->fin))."h".date("i",strtotime($lignes->fin))}}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalregleSearch-{{$lignes->id}}">Règle(s)</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalregleSearch-{{$lignes->id}}">Voir</button>
                                   <div class="modal fade" id="exampleModalregleSearch-{{$lignes->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                       <div class="modal-content">
@@ -560,7 +560,7 @@
                                   </div>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalcommentaireSearch-{{$lignes->id}}">Commentaire(s)</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalcommentaireSearch-{{$lignes->id}}">Voir</button>
                                   <div class="modal fade" id="exampleModalcommentaireSearch-{{$lignes->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                       <div class="modal-content">

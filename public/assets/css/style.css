@@ -55,6 +55,13 @@ td
     font-weight: 900;
     cursor: pointer;
 }
+.epreuve-table{
+    max-height: 450px;
+    overflow-y: auto;
+}
+.td-w{
+    width: 180px;
+}
 
 
 /* BOOTSTRAP OVERRIDE */

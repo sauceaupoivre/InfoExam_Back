@@ -39,7 +39,7 @@
             <div class="card-header card-header-blue">
                 <h4 class="text-center mb-0 text-white">LISTE DES SALLES</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body epreuve-table">
                 <table class="table text-center">
                     <thead>
                     <tr>
@@ -135,7 +135,7 @@
             <div class="card-header card-header-blue">
                 <h4 class="text-center mb-0 text-white">LISTE DES SALLES</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body epreuve-table">
                 <table class="table text-center">
                     <thead>
                     <tr>

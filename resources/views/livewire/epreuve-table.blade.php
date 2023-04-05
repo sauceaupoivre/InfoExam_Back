@@ -88,7 +88,7 @@
             <div class="card-header card-header-blue">
                 <h4 class="text-center mb-0 text-white">LISTE DES ÉPREUVES</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body epreuve-table">
                 <!-- Debut Table -->
                 <table class="table text-center">
                     <thead>
@@ -145,7 +145,7 @@
 
                                 </small>
                             </td>
-                            <td >
+                            <td class="td-w">
                                 @forelse ($e->formations as $formation)
                                     <span class="badge text-bg-secondary m-1">{{$formation->nom}} {{$formation->serie}}</span>
                                 @empty

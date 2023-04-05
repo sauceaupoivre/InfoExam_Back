@@ -51,7 +51,7 @@
     <div class="card-header card-header-blue">
         <h4 class="text-center mb-0 text-white">LISTE DES FORMATIONS</h4>
     </div>
-    <div class="card-body">
+    <div class="card-body epreuve-table">
         <table class="table text-center">
             <thead>
               <tr>
@@ -141,8 +141,8 @@
 @else
 <section class="Section1">
     <div>
-        <div class="Section1DivBtn">
-            <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#exampleModal"style=" margin-top: 5vh;">Créer une formation<i class="bi bi-plus-square" style="padding-left: 0.5vw;"></i></button>
+        <div class="Section1DivBtn mb-2 mt-4">
+            <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#exampleModal">Créer une formation <i class="bi bi-plus-square"></i></button>
             <form action="{{route("formationsSearch")}}" method="post">
                 @csrf
                 <input type="text" class="form-control" id="recherche" name="recherche" pattern="[A-Za-z]{1,}.*" placeholder ="Recherche">
@@ -182,12 +182,11 @@
             </div>
         </div>
     </div>
-    <br>
 <div class="card ">
     <div class="card-header card-header-blue">
         <h4 class="text-center mb-0 text-white">LISTE DES FORMATIONS</h4>
     </div>
-    <div class="card-body">
+    <div class="card-body epreuve-table">
         <table class="table text-center">
             <thead>
               <tr>
