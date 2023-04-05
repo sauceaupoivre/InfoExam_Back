@@ -477,8 +477,8 @@
     </div>
     <div class="pt-4 pb-4">
         <div class="Section1DivBtn">
-            <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#addepreuveSearch">Créer un examen <i class="bi bi-plus-square" style="padding-left: 0.5vw;"></i></button>
-            <form action="{{route("examensSearch")}}" method="post" style="margin-bottom: 2.5vh;">
+            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addepreuveSearch">Créer un examen <i class="bi bi-plus-square"></i></i></button>
+            <form action="{{route("examensSearch")}}" method="post" class="mb-2">
                 @csrf
                 <input type="text" class="form-control" id="recherche" name="recherche" pattern="[A-Za-z]{1,}.*" placeholder ="Recherche">
                 <button type="submit" class="btn btn-primary" id="chercher">Rechercher<i class="bi bi-search"></i></button>
