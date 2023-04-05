@@ -4,98 +4,98 @@
 @section('content')
 <script>
     $(document).ready(function () {
-        $('#epreuve').change(function () {
-            var epreuve_id = $(this).val();
-            if (epreuve_id !== '') {
+        $('#formations').change(function () {
+            var formation_id = $(this).val();
+            if (formation_id !== '') {
                 $.ajax({
-                    url: $("#url").val()+'/epreuves/' + epreuve_id + "/formations",
+                    url: $("#url").val()+'/formations/' + formation_id + "/epreuves",
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
-                        $('#formations').empty();
+                        $('#epreuve').empty();
                         $.each(data, function (key, value) {
-                            $('#formations').append('<option value="' + value.id + '">' + value.nom + '</option>');
+                            $('#epreuve').append('<option value="' + value.id + '">' + value.epreuve + "-" + value.matiere + '</option>');
                         });
-                        $('#formations').prop('disabled', false);
+                        $('#epreuve').prop('disabled', false);
                     }
                 });
             }
             else
             {
-                $('#formations').empty();
-                $('#formations').prop('disabled', true);
+                $('#epreuve').empty();
+                $('#epreuve').prop('disabled', true);
             }
         });
     });
     $(document).ready(function () {
-        $('#epreuveModif').change(function () {
-            var epreuve_id = $(this).val();
-            if (epreuve_id !== '') {
+        $('#formationsModif').change(function () {
+            var formation_id = $(this).val();
+            if (formation_id !== '') {
                 $.ajax({
-                    url: $("#url").val()+'/epreuves/' + epreuve_id + "/formations",
+                    url: $("#url").val()+'/formations/' + formation_id + "/epreuves",
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
-                        $('#formationsModif').empty();
+                        $('#epreuveModif').empty();
                         $.each(data, function (key, value) {
-                            $('#formationsModif').append('<option value="' + value.id + '">' + value.nom + '</option>');
+                            $('#epreuveModif').append('<option value="' + value.id + '">' +value.epreuve + "-" +value.matiere + '</option>');
                         });
-                        $('#formationsModif').prop('disabled', false);
+                        $('#epreuveModif').prop('disabled', false);
                     }
                 });
             }
             else
             {
-                $('#formationsModif').empty();
-                $('#formationsModif').prop('disabled', true);
+                $('#epreuveModif').empty();
+                $('#epreuveModif').prop('disabled', true);
             }
         });
     });
     $(document).ready(function () {
-        $('#epreuveModifSearch').change(function () {
-            var epreuve_id = $(this).val();
-            if (epreuve_id !== '') {
+        $('#formationsModifSearch').change(function () {
+            var formation_id= $(this).val();
+            if (formation_id !== '') {
                 $.ajax({
-                    url: $("#url").val()+'/epreuves/' + epreuve_id + "/formations",
+                    url: $("#url").val()+'/formations/' + formation_id + "/epreuves",
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
-                        $('#formationsModifSearch').empty();
+                        $('#epreuveModifSearch').empty();
                         $.each(data, function (key, value) {
-                            $('#formationsModifSearch').append('<option value="' + value.id + '">' + value.nom + '</option>');
+                            $('#epreuveModifSearch').append('<option value="' + value.id + '">' + value.epreuve + "-" + value.matiere +'</option>');
                         });
-                        $('#formationsModifSearch').prop('disabled', false);
+                        $('#epreuveModifSearch').prop('disabled', false);
                     }
                 });
             }
             else
             {
-                $('#formationsModifSearch').empty();
-                $('#formationsModifSearch').prop('disabled', true);
+                $('#epreuveModifSearch').empty();
+                $('#epreuveModifSearch').prop('disabled', true);
             }
         });
     });
     $(document).ready(function () {
-        $('#epreuveSearch').change(function () {
-            var epreuve_id = $(this).val();
-            if (epreuve_id !== '') {
+        $('#formationsSearch').change(function () {
+            var formation_id = $(this).val();
+            if (formation_id !== '') {
                 $.ajax({
-                    url: $("#url").val()+'/epreuves/' + epreuve_id + "/formations",
+                    url: $("#url").val()+'/formations/' + formation_id + "/epreuves",
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
-                        $('#formationsSearch').empty();
+                        $('#epreuveSearch').empty();
                         $.each(data, function (key, value) {
-                            $('#formationsSearch').append('<option value="' + value.id + '">' + value.nom + '</option>');
+                            $('#epreuveSearch').append('<option value="' + value.id + '">' + value.epreuve + "-" + value.matiere + '</option>');
                         });
-                        $('#formationsSearch').prop('disabled', false);
+                        $('#epreuveSearch').prop('disabled', false);
                     }
                 });
             }
             else
             {
-                $('#formationsSearch').empty();
-                $('#formationsSearch').prop('disabled', true);
+                $('#epreuveSearch').empty();
+                $('#epreuveSearch').prop('disabled', true);
             }
         });
     });
@@ -131,17 +131,17 @@
                         </select>
                     </div>
                     <div class="input-group mb-2">
-                        <span class="input-group-text">Choisir l'épreuve : </span>
-                        <select class="form-select" name="epreuve" aria-label="Default select example" id="epreuve"required>
-                            <option value="" disabled selected hidden>Epreuves</option>
-                            @forelse ($epreuves as $ep)
-                                <option value="{{ $ep->id }}">{{ $ep->matiere }}</option>
+                        <span class="input-group-text">Choisir une formation : </span>
+                        <select class="form-select" id="formations" name="formation" aria-label="Default select example" required>
+                            <option value="" disabled selected hidden ></option>
+                            @forelse ($formations as $f)
+                                <option value="{{ $f->id }}">{{$f->nom . "-" . $f->serie}}</option>
                             @empty
                             @endforelse
                         </select>
-                        <select class="form-select" id="formations" name="formation" aria-label="Default select example" required disabled>
-                            <option value="" disabled selected hidden>Formations</option>
-                          </select>
+                        <select class="form-select" name="epreuve" aria-label="Default select example" id="epreuve" required disabled>
+                            <option value="" disabled selected hidden></option>
+                        </select>
                     </div>
                     <div class="input-group mb-2">
                         <span class="input-group-text">Choisir une date : </span>
@@ -346,17 +346,17 @@
                                             </select>
                                         </div>
                                         <div class="input-group mb-2">
-                                            <span class="input-group-text">Choisir l'épreuve : </span>
-                                            <select class="form-select" name="epreuve" aria-label="Default select example" id="epreuveModif"required>
-                                                <option value="{{$e->epreuve->id}}"disabled selected hidden >{{$e->epreuve->matiere}}</option>
-                                                @forelse ($epreuves as $ep)
-                                                    <option value="{{ $ep->id }}">{{ $ep->matiere }}</option>
+                                            <span class="input-group-text">Choisir une formation : </span>
+                                            <select class="form-select" id="formationsModif" name="formation" aria-label="Default select example" required>
+                                                <option value="{{$e->formation->id}}"disabled selected hidden >{{$e->formation->nom . " - " . $e->formation->serie}}</option>
+                                                @forelse ($formations as $f)
+                                                    <option value="{{ $f->id }}">{{$f->nom . "-" . $f->serie}}</option>
                                                 @empty
                                                 @endforelse
                                             </select>
-                                            <select class="form-select" id="formationsModif" name="formation" aria-label="Default select example" required disabled>
-                                                <option value="{{$e->formation->id}}" disabled selected hidden>{{$e->formation->nom}}</option>
-                                              </select>
+                                            <select class="form-select" name="epreuve" aria-label="Default select example" id="epreuveModif"required disabled>
+                                                <option value="{{$e->epreuve_id}}" disabled selected hidden>{{$e->epreuve->epreuve. " - " . $e->epreuve->matiere}}</option>
+                                            </select>
                                         </div>
                                         <div class="input-group mb-2">
                                             <span class="input-group-text">Choisir une date :</span>
@@ -432,19 +432,19 @@
                                 @endforelse
                             </select>
                         </div>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text">Choisir l'épreuve : </span>
-                            <select class="form-select" name="epreuve" aria-label="Default select example" id="epreuveSearch"required>
-                                <option value="" disabled selected hidden>Epreuves</option>
-                                @forelse ($epreuves as $ep)
-                                    <option value="{{ $ep->id }}">{{ $ep->matiere }}</option>
-                                @empty
-                                @endforelse
-                            </select>
-                            <select class="form-select" id="formationsSearch" name="formation" aria-label="Default select example" required disabled>
-                                <option value="" disabled selected hidden>Formations</option>
-                              </select>
-                        </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Choisir une formation : </span>
+                                <select class="form-select" id="formationsSearch" name="formation" aria-label="Default select example" required>
+                                    <option value="" disabled selected hidden ></option>
+                                    @forelse ($formations as $f)
+                                        <option value="{{ $f->id }}">{{$f->nom . "-" . $f->serie}}</option>
+                                    @empty
+                                    @endforelse
+                                </select>
+                                <select class="form-select" name="epreuve" aria-label="Default select example" id="epreuveSearch"required disabled>
+                                    <option value="" disabled selected hidden></option>
+                                </select>
+                            </div>
                         <div class="input-group mb-2">
                             <span class="input-group-text">Choisir une date : </span>
                             <input class="form-control" id="dateSearch" type="date" name="date" required>
@@ -645,17 +645,17 @@
                                                 </select>
                                             </div>
                                             <div class="input-group mb-2">
-                                                <span class="input-group-text">Choisir l'épreuve : </span>
-                                                <select class="form-select" name="epreuve" aria-label="Default select example" id="epreuveModifSearch"required>
-                                                    <option value="{{$lignes->epreuve->id}}"disabled selected hidden >{{$lignes->epreuve->matiere}}</option>
-                                                    @forelse ($epreuves as $ep)
-                                                        <option value="{{ $ep->id }}">{{ $ep->matiere }}</option>
+                                                <span class="input-group-text">Choisir une formation : </span>
+                                                <select class="form-select" id="formationsModifSearch" name="formation" aria-label="Default select example" required>
+                                                    <option value="{{$lignes->formation_id}}" disabled selected hidden >{{$lignes->formation->nom . "-" . $lignes->formation->serie}}</option>
+                                                    @forelse ($formations as $f)
+                                                        <option value="{{ $f->id }}">{{$f->nom . "-" . $f->serie}}</option>
                                                     @empty
                                                     @endforelse
                                                 </select>
-                                                <select class="form-select" id="formationsModifSearch" name="formation" aria-label="Default select example" required disabled>
-                                                    <option value="{{$lignes->formation->id}}" disabled selected hidden>{{$lignes->formation->nom}}</option>
-                                                  </select>
+                                                <select class="form-select" name="epreuve" aria-label="Default select example" id="epreuveModifSearch"required disabled>
+                                                    <option value="{{$lignes->epreuve_id}}" disabled selected hidden>{{$lignes->epreuve->epreuve . "-" . $lignes->epreuve->matiere}}</option>
+                                                </select>
                                             </div>
                                             <div class="input-group mb-2">
                                                 <span class="input-group-text">Choisir une date :</span>

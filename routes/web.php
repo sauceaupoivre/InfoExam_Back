@@ -47,7 +47,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-Route::get('/epreuves/{id}/formations',[ExamenController::class,"epreuveFormations"])->name("epreuveForms");
+Route::get('/formations/{id}/epreuves',[ExamenController::class,"epreuveFormations"])->name("epreuveForms");
 Route::post("/formations/search",[FormationController::class,"formationsSearch"])->name("formationsSearch");
 Route::post("/examens/search",[ExamenController::class,"examensSearch"])->name("examensSearch");
 Route::post("/epreuves/search",[EpreuveController::class,"epreuveSearch"])->name("epreuveSearch");

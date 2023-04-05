@@ -20,9 +20,10 @@ class ExamenController extends Controller
     public function index()
     {
         $examens = Examen::all();
+        $formations = Formation::all();
         $salles = Salle::All();
         $epreuves = Epreuve::All();
-        return view("examens",compact("examens","salles","epreuves"));
+        return view("examens",compact("examens","salles","epreuves","formations"));
     }
 
     /**
@@ -202,8 +203,8 @@ class ExamenController extends Controller
     public function epreuveFormations($id)
     {
         $this->middleware('cors');
-        $formations = Epreuve::find($id)->formations;
-        return response()->json($formations);
+        $epreuves = Formation::find($id)->epreuves;
+        return response()->json($epreuves);
     }
 
     public function epreuvesSearch($matiere)

@@ -29,8 +29,8 @@
                         <input type="text" class="form-control" id="name" name="nom"  pattern="[A-Za-z]{1,}.*" placeholder ="Minimum 3 caractères" required>
                     </div>
                     <div class="mb-3">
-                        <label for="message" class="form-label">Serie : (Optionnel)</label>
-                        <input type="text" class="form-control" id="message" rows="3" name="numeros" value="" pattern="[A-Za-z]{1,}.*" placeholder ="Minimum 1 caractères">
+                        <label for="message" class="form-label">Serie :</label>
+                        <input type="text" class="form-control" id="message" rows="3" name="numeros" value="" pattern="[A-Za-z]{1,}.*" placeholder ="Minimum 1 caractères" required>
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Academie : </label>
@@ -165,8 +165,8 @@
                         <input type="text" class="form-control" id="name" name="nom" pattern="[A-Za-z]{3,}.*" placeholder ="Minimum 3 caractères" required>
                     </div>
                     <div class="mb-3">
-                        <label for="message" class="form-label">Serie : (Optionnel)</label>
-                        <input type="text" class="form-control" id="message" rows="3" name="numeros" value="" pattern="[A-Za-z]{1,}.*" placeholder ="Minimum 1 caractères">
+                        <label for="message" class="form-label">Serie :</label>
+                        <input type="text" class="form-control" id="message" rows="3" name="numeros" value="" pattern="[A-Za-z]{1,}.*" placeholder ="Minimum 1 caractères" required>
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Academie : </label>
